@@ -106,17 +106,16 @@ h2 {
 }
 
 .btn-cita {
-    display: inline-block; /* Para que btn-general funcione bien */
-    padding: 0.8rem 1.5rem; /* Ajuste para el botón del header */
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
     text-transform: uppercase;
     font-weight: 700;
-    font-size: 0.9rem; /* Un poco más grande que los de servicios si quieres */
+    font-size: 0.9rem;
 
-    /* Colores invertidos para el botón del header */
     background-color: var(--blanco);
-    color: var(--negro-texto) !important; 
-    border: 2px solid var(--negro-texto); 
-    transition: all 0.3s ease-out; /* Misma transición */
+    color: var(--negro-texto) !important;
+    border: 2px solid var(--negro-texto);
+    transition: all 0.3s ease-out;
 }
 
 .btn-cita:hover {
@@ -124,14 +123,15 @@ h2 {
     border-color: var(--verde-principal);
     color: var(--blanco) !important;
     transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .btn-cita::after {
-    display: none; /* Asegura que no tenga la raya de abajo */
+    display: none;
+    /* Asegura que no tenga la raya de abajo */
 }
 
-/* Estilos para Páginas Interiores (Como servicios.html) */
+/* Estilos para Páginas Interiores */
 .seccion-generica {
     padding: 6rem 0;
 }
@@ -147,7 +147,8 @@ h2 {
 .detalle-servicio {
     border-top: 1px solid var(--gris-claro);
     padding: 2.5rem 0;
-    text-align: center; /* <<< Nuevo: para centrar el contenido, incluyendo el botón */
+    text-align: center;
+    /* centrar el contenido */
 }
 
 .detalle-servicio h3 {
@@ -159,10 +160,9 @@ h2 {
 .detalle-servicio p {
     text-align: center;
     max-width: 700px;
-    margin: 0 auto 1.5rem auto; /* Ajusté el margen inferior del párrafo para separar del botón */
+    margin: 0 auto 1.5rem auto;
 }
 
-/* CAMBIO: Estilos para el botón "Agendar Cita" en cada servicio */
 .btn-servicio {
     display: inline-block;
     padding: 0.7rem 1.8rem;
@@ -182,13 +182,11 @@ h2 {
     border-color: var(--verde-principal);
     color: var(--blanco);
     transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Ocultamos la línea para el botón */
 
 
-/* --- Hero Section --- */
 .hero {
     display: flex;
     align-items: center;
@@ -211,7 +209,6 @@ h2 {
     color: #666;
 }
 
-/* --- Sección Servicios (Homepage) --- */
 .seccion-servicios {
     padding: 6rem 0;
     background-color: var(--blanco);
@@ -240,7 +237,6 @@ h2 {
     font-weight: 500;
 }
 
-/* --- Sección Sobre Nosotros --- */
 .seccion-nosotros {
     padding: 6rem 0;
     background-color: var(--gris-claro);
@@ -272,7 +268,6 @@ h2 {
     border-color: var(--verde-principal);
 }
 
-/* --- Estilos para Páginas Interiores (Como servicios.html) --- */
 .seccion-generica {
     padding: 6rem 0;
 }
@@ -293,21 +288,17 @@ h2 {
 
 .detalle-servicio h3 {
     text-align: center;
-    /* <<< CAMBIO AQUÍ */
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
 }
 
 .detalle-servicio p {
     text-align: center;
-    /* <<< Y CAMBIO AQUÍ */
     max-width: 700px;
-    /* Añado un ancho máximo para que no se extienda demasiado en pantallas grandes */
     margin: 0 auto;
-    /* Esto centra el bloque de párrafo */
 }
 
-/* --- Animaciones de Entrada --- */
+/* Animaciones de Entrada */
 @keyframes fadeInSlideUp {
     from {
         opacity: 0;
@@ -320,12 +311,9 @@ h2 {
     }
 }
 
-/* Clases para aplicar la animación */
 .animate-on-load {
     opacity: 0;
-    /* Aseguramos que el elemento esté invisible al cargar */
     animation: fadeInSlideUp 0.8s ease-out forwards;
-    /* Aplicamos la animación */
 }
 
 /* Retrasos para animar elementos secuencialmente */
@@ -369,11 +357,9 @@ h2 {
     animation-delay: 1.0s;
 }
 
-/* --- Botón "Agendar Cita" en cada servicio --- */
 .btn-servicio {
     display: inline-block;
     margin-top: 1.5rem;
-    /* Espacio entre el párrafo y el botón */
     padding: 0.7rem 1.8rem;
     border: 2px solid var(--negro-texto);
     color: var(--negro-texto);
@@ -395,7 +381,6 @@ h2 {
     color: var(--blanco);
     /* Color del texto al pasar el mouse */
     transform: translateY(-3px);
-    /* Ligero efecto de elevación */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     /* Sombra sutil */
 }
