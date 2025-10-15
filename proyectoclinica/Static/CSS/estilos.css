@@ -1,0 +1,425 @@
+:root {
+    --verde-principal: #009b4d;
+    --blanco: #FFFFFF;
+    --negro-texto: #1a1a1a;
+    --gris-claro: #f4f4f4;
+    --fuente-principal: 'Work Sans', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    background-color: var(--blanco);
+    color: var(--negro-texto);
+    line-height: 1.6;
+}
+
+.contenedor {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1,
+h2,
+h3 {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+h1 {
+    font-size: 4rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+/* Header */
+.header-principal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    border-bottom: 1px solid var(--gris-claro);
+    background-color: var(--blanco);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: var(--negro-texto);
+}
+
+.logo {
+    height: 60px;
+}
+
+.logo-texto {
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.navegacion a {
+    color: var(--negro-texto);
+    text-decoration: none;
+    margin-left: 2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    padding-bottom: 8px;
+    position: relative;
+}
+
+.navegacion a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--verde-principal);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease-out;
+}
+
+/* animación al pasar el mouse */
+.navegacion a:hover::after {
+    transform: scaleX(1);
+}
+
+.navegacion a:hover {
+    color: var(--negro-texto);
+}
+
+.btn-cita {
+    display: inline-block; /* Para que btn-general funcione bien */
+    padding: 0.8rem 1.5rem; /* Ajuste para el botón del header */
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.9rem; /* Un poco más grande que los de servicios si quieres */
+
+    /* Colores invertidos para el botón del header */
+    background-color: var(--blanco);
+    color: var(--negro-texto) !important; 
+    border: 2px solid var(--negro-texto); 
+    transition: all 0.3s ease-out; /* Misma transición */
+}
+
+.btn-cita:hover {
+    background-color: var(--verde-principal);
+    border-color: var(--verde-principal);
+    color: var(--blanco) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.btn-cita::after {
+    display: none; /* Asegura que no tenga la raya de abajo */
+}
+
+/* Estilos para Páginas Interiores (Como servicios.html) */
+.seccion-generica {
+    padding: 6rem 0;
+}
+
+.seccion-generica .introduccion {
+    text-align: center;
+    max-width: 800px;
+    margin: -2rem auto 4rem auto;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.detalle-servicio {
+    border-top: 1px solid var(--gris-claro);
+    padding: 2.5rem 0;
+    text-align: center; /* <<< Nuevo: para centrar el contenido, incluyendo el botón */
+}
+
+.detalle-servicio h3 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.detalle-servicio p {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 1.5rem auto; /* Ajusté el margen inferior del párrafo para separar del botón */
+}
+
+/* CAMBIO: Estilos para el botón "Agendar Cita" en cada servicio */
+.btn-servicio {
+    display: inline-block;
+    padding: 0.7rem 1.8rem;
+    border: 2px solid var(--negro-texto);
+    color: var(--negro-texto);
+    background-color: transparent;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+
+.btn-servicio:hover {
+    background-color: var(--verde-principal);
+    border-color: var(--verde-principal);
+    color: var(--blanco);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Ocultamos la línea para el botón */
+
+
+/* --- Hero Section --- */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 70vh;
+    padding: 2rem;
+}
+
+.hero-texto {
+    max-width: 800px;
+}
+
+.hero-texto h1 {
+    margin-bottom: 1rem;
+}
+
+.hero-texto p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+/* --- Sección Servicios (Homepage) --- */
+.seccion-servicios {
+    padding: 6rem 0;
+    background-color: var(--blanco);
+}
+
+.grid-servicios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.servicio-item {
+    text-align: center;
+}
+
+.servicio-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    background-color: var(--gris-claro);
+}
+
+.servicio-item h3 {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+/* --- Sección Sobre Nosotros --- */
+.seccion-nosotros {
+    padding: 6rem 0;
+    background-color: var(--gris-claro);
+    text-align: center;
+}
+
+.contenedor-texto {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.contenedor-texto h2 {
+    margin-bottom: 1.5rem;
+}
+
+.link-discreto {
+    display: inline-block;
+    margin-top: 2rem;
+    color: var(--negro-texto);
+    text-decoration: none;
+    border-bottom: 1px solid var(--negro-texto);
+    padding-bottom: 5px;
+    font-weight: 500;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.link-discreto:hover {
+    color: var(--verde-principal);
+    border-color: var(--verde-principal);
+}
+
+/* --- Estilos para Páginas Interiores (Como servicios.html) --- */
+.seccion-generica {
+    padding: 6rem 0;
+}
+
+.seccion-generica .introduccion {
+    text-align: center;
+    max-width: 800px;
+    margin: -2rem auto 4rem auto;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.detalle-servicio {
+    border-top: 1px solid var(--gris-claro);
+    padding: 2.5rem 0;
+    /* Aumenté un poco el espacio para que se vea mejor */
+}
+
+.detalle-servicio h3 {
+    text-align: center;
+    /* <<< CAMBIO AQUÍ */
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.detalle-servicio p {
+    text-align: center;
+    /* <<< Y CAMBIO AQUÍ */
+    max-width: 700px;
+    /* Añado un ancho máximo para que no se extienda demasiado en pantallas grandes */
+    margin: 0 auto;
+    /* Esto centra el bloque de párrafo */
+}
+
+/* --- Animaciones de Entrada --- */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Clases para aplicar la animación */
+.animate-on-load {
+    opacity: 0;
+    /* Aseguramos que el elemento esté invisible al cargar */
+    animation: fadeInSlideUp 0.8s ease-out forwards;
+    /* Aplicamos la animación */
+}
+
+/* Retrasos para animar elementos secuencialmente */
+.animate-delay-1 {
+    animation-delay: 0.1s;
+}
+
+.animate-delay-2 {
+    animation-delay: 0.2s;
+}
+
+.animate-delay-3 {
+    animation-delay: 0.3s;
+}
+
+.animate-delay-4 {
+    animation-delay: 0.4s;
+}
+
+.animate-delay-5 {
+    animation-delay: 0.5s;
+}
+
+.animate-delay-6 {
+    animation-delay: 0.6s;
+}
+
+.animate-delay-7 {
+    animation-delay: 0.7s;
+}
+
+.animate-delay-8 {
+    animation-delay: 0.8s;
+}
+
+.animate-delay-9 {
+    animation-delay: 0.9s;
+}
+
+.animate-delay-10 {
+    animation-delay: 1.0s;
+}
+
+/* --- Botón "Agendar Cita" en cada servicio --- */
+.btn-servicio {
+    display: inline-block;
+    margin-top: 1.5rem;
+    /* Espacio entre el párrafo y el botón */
+    padding: 0.7rem 1.8rem;
+    border: 2px solid var(--negro-texto);
+    color: var(--negro-texto);
+    background-color: transparent;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    /* Animación suave para el hover */
+}
+
+.btn-servicio:hover {
+    background-color: var(--verde-principal);
+    /* Color de fondo al pasar el mouse */
+    border-color: var(--verde-principal);
+    /* Color del borde al pasar el mouse */
+    color: var(--blanco);
+    /* Color del texto al pasar el mouse */
+    transform: translateY(-3px);
+    /* Ligero efecto de elevación */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Sombra sutil */
+}
+
+/* Footer */
+.footer-principal {
+    border-top: 1px solid var(--gris-claro);
+    padding: 2.5rem 5%;
+}
+
+.footer-contenido {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.redes-sociales a {
+    color: #666;
+    text-decoration: none;
+    margin-left: 1.5rem;
+}
+
+.redes-sociales a:hover {
+    color: var(--verde-principal);
+}
