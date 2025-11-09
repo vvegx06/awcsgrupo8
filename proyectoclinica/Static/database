@@ -1,0 +1,32 @@
+CREATE DATABASE clinica;
+USE clinica;
+
+-- Tabla de pacientes
+CREATE TABLE pacientes (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nombre VARCHAR(100) NOT NULL,
+  correo VARCHAR(100) NOT NULL UNIQUE,
+  contraseña VARCHAR(255) NOT NULL
+);
+
+-- Tabla de dentistas
+CREATE TABLE dentistas (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nombre VARCHAR(100) NOT NULL,
+  especialidad VARCHAR(100) NOT NULL,
+  experiencia INT DEFAULT 0,
+  correo VARCHAR(100),
+  contraseña VARCHAR(255)
+);
+
+-- Tabla de citas
+CREATE TABLE citas (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  id_paciente INT NOT NULL,
+  id_dentista INT NOT NULL,
+  fecha DATE NOT NULL,
+  hora TIME NOT NULL,
+  estado VARCHAR(50) DEFAULT 'Pendiente',
+  FOREIGN KEY (id_paciente) REFERENCES pacientes(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (id_dentista) REFERENCES dentistas(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
