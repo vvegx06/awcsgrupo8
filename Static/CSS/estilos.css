@@ -4,6 +4,7 @@
     --negro-texto: #1a1a1a;
     --gris-claro: #f4f4f4;
     --fuente-principal: 'Work Sans', sans-serif;
+    --blanco-hueso: #f5f2e8;
 }
 
 * {
@@ -130,6 +131,33 @@ h2 {
     display: none;
     /* Asegura que no tenga la raya de abajo */
 }
+
+/* Botón Iniciar Sesión */
+.btn-iniciarSesion {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.9rem;
+
+    background-color: var(--blanco);
+    color: var(--negro-texto) !important;
+    border: 2px solid var(--blanco-hueso);
+    transition: all 0.3s ease-out;
+}
+
+.btn-iniciarSesion:hover {
+    background-color: var(--blanco-hueso);
+    border-color: var(--blanco-hueso);
+    color: var(--negro-texto) !important; /* texto negro */
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.btn-iniciarSesion::after {
+    display: none;
+}
+
 
 /* Estilos para Páginas Interiores */
 .seccion-generica {
