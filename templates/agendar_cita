@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agendar Cita | Clínica Dental John Vega</title>
+  <link rel="stylesheet" href="static/css/estilos.css">
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+    body {
+      font-family: 'Work Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff; 
+      color: #000000; 
+    }
+
+    /* Header */
+    .header-principal {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+      background-color: #ffffff;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .logo-texto {
+      color: #000; 
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .navegacion {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .navegacion a {
+      color: #000; 
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .navegacion a:hover,
+    .navegacion a.activo {
+      color: #2e7d32; 
+    }
+
+    /* Botón Agendar Cita (Menú) */
+    .btn-cita {
+      background-color: #43a047; 
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    .btn-cita:hover {
+      background-color: #66bb6a;
+    }
+
+    /* Sección Agendar */
+    .agendar {
+      max-width: 500px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: #ffffff; 
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .agendar h2 {
+      text-align: center;
+      color: #2e7d32;
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+    }
+
+    .agendar form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .agendar label {
+      font-weight: 500;
+      color: #000;
+    }
+
+    .agendar input,
+    .agendar select {
+      padding: 0.6rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      width: 100%;
+      box-sizing: border-box;
+      color: #000;
+    }
+
+    /* Botón para enviar formulario */
+    .btn-servicio {
+      background-color: #2e7d32; 
+      color: #fff;
+      padding: 0.7rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn-servicio:hover {
+      background-color: #4caf50;
+    }
+
+
+  /* Footer */
+.footer-principal {
+  text-align: center;S
+  padding: 1.5rem 0;
+  background-color: #ffffff; 
+  margin-top: 2rem;
+}
+
+.footer-principal .footer-texto {
+  color: #000000;     
+  font-size: 1rem;
+  margin: 0;          
+  font-weight: 500;
+}
+</style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header-principal">
+    <a href="index.html" class="logo-container">
+      <img src="static/img/clinica.png" alt="Logo" class="logo">
+      <span class="logo-texto">Clínica Dental John Vega</span>
+    </a>
+
+    <nav class="navegacion">
+      <a href="index.html">Inicio</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="agendar.html" class="btn-cita activo">Agendar Cita</a>
+    </nav>
+  </header>
+
+  <!-- Sección Agendar -->
+  <section class="agendar">
+    <h2>Agenda tu cita</h2>
+    <form id="formCita">
+      <label>Nombre completo:</label>
+      <input type="text" name="nombre" required>
+
+      <label>Correo electrónico:</label>
+      <input type="email" name="correo" required>
+
+      <label>Teléfono:</label>
+      <input type="tel" name="telefono" required>
+
+      <label>Servicio:</label>
+      <select name="servicio" required>
+        <option value="">Seleccione un servicio</option>
+        <option>Odontología General</option>
+        <option>Ortodoncia</option>
+        <option>Endodoncia</option>
+        <option>Periodoncia</option>
+      </select>
+
+      <label>Fecha deseada:</label>
+      <input type="date" name="fecha" required>
+
+      <button type="submit" class="btn-servicio">Enviar por WhatsApp</button>
+    </form>
+    <div id="mensaje-exito">¡Solicitud enviada con éxito por WhatsApp!</div>
+  </section>
+
+  <!-- Footer -->
+<footer class="footer-principal">
+    <p class="footer-texto">© 2025 Clínica Dental John Vega</p>
+</footer>
+
+
+  <script>
+    document.getElementById('formCita').addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const nombre = this.nombre.value;
+      const correo = this.correo.value;
+      const telefono = this.telefono.value;
+      const servicio = this.servicio.value;
+      const fecha = this.fecha.value;
+
+      // Número de WhatsApp 
+      const numero = "50661978209"; 
+
+      const mensaje = `Hola, soy ${nombre}.
+Quisiera agendar una cita en la Clínica Dental John Vega.
+Correo: ${correo}
+Teléfono: ${telefono}
+Servicio: ${servicio}
+Fecha deseada: ${fecha}`;
+
+      // Codificar el mensaje para evitar símbolos extraños
+      const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+
+      // Abrir WhatsApp en una nueva pestaña
+      window.open(url, "_blank");
+
+      // Mostrar mensaje de éxito
+      document.getElementById('mensaje-exito').style.display = 'block';
+      this.reset();
+    });
+      </script>
+</body>
+
+</html>
+
+
+
