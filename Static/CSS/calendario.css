@@ -1,0 +1,73 @@
+
+body {
+font-family: Arial, sans-serif;
+background: #f4f4f4;
+display: flex;
+justify-content: center;
+padding: 30px;
+}
+
+.calendar-container {
+background: #fff;
+padding: 20px;
+border-radius: 12px;
+box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+width: 350px;
+}
+
+h2 {
+text-align: center;
+}
+
+.calendar {
+display: grid;
+grid-template-columns: repeat(7, 1fr);
+gap: 5px;
+margin-top: 20px;
+}
+.day-name {
+font-weight: bold;
+text-align: center;
+padding: 5px 0;
+}
+
+.day {
+text-align: center;
+padding: 10px 0;
+background: #e8e8e8;
+border-radius: 5px;
+cursor: pointer;
+transition: 0.2s;
+}
+
+.day:hover {
+background: #cce4ff;
+}
+
+.selected {
+background: #009b4d;
+color: white;
+font-weight: bold;
+}
+
+#selected-date {
+margin-top: 20px;
+text-align: center;
+font-size: 1.1rem;
+}
+
+button {
+width: 100%;
+margin-top: 15px;
+padding: 10px;
+background: #4a90e2;
+color: white;
+border: none;
+border-radius: 6px;
+font-size: 1rem;
+cursor: pointer;
+}
+
+button:hover {
+background: #009b4d;
+}

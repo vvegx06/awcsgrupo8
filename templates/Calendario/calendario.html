@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario - Clínica Dental Especializada John Vega</title>
+
+    <link rel="stylesheet" href="/Static/CSS/calendario.css">
+    <link rel="stylesheet" href="/Static/CSS/estilos.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+<div class="calendar-container">
+<h2>Agendar Cita</h2>
+<div id="month-year" style="text-align:center; font-weight:bold;"></div>
+
+
+<div class="calendar" id="calendar"></div>
+
+
+<div id="selected-date">Seleccione una fecha</div>
+<button onclick="confirmarCita()">Confirmar Cita</button>
+</div>
+
+
+<script>
+const calendarEl = document.getElementById("calendar");
+const monthYearEl = document.getElementById("month-year");
+const selectedDateEl = document.getElementById("selected-date");
+
+
+let selectedDay = null;
+
+
+const date = new Date();
+let year = date.getFullYear();
+let month = date.getMonth();
+
+
+const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+
+
+function generarCalendario() {
+monthYearEl.textContent = monthNames[month] + " " + year;
+
+
+const firstDay = (new Date(year, month, 1).getDay() + 6) % 7;
+const lastDay = new Date(year, month + 1, 0).getDate();
+
+
+const daysOfWeek = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
+calendarEl.innerHTML = "";
+
+
+daysOfWeek.forEach(d => {
+const div = document.createElement("div");
+div.classList.add("day-name");
+div.textContent = d;
+calendarEl.appendChild(div);
+});
+
+
+for (let i = 0; i < firstDay; i++) {
+const empty = document.createElement("div");
+calendarEl.appendChild(empty);
+}
+
+
+for (let day = 1; day <= lastDay; day++) {
+const div = document.createElement("div");
+div.classList.add("day");
+div.textContent = day;
+
+
+div.addEventListener("click", () => seleccionarDia(div, day));
+
+
+calendarEl.appendChild(div);
+}
+}
+
+
+function seleccionarDia(element, day) {
+document.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
+element.classList.add('selected');
+selectedDay = day;
+selectedDateEl.textContent = `Fecha seleccionada: ${day} / ${month + 1} / ${year}`;
+}
+
+function confirmarCita() {
+if (!selectedDay) {
+alert("Por favor seleccione una fecha");
+return;
+}
+alert("Cita confirmada para el " + selectedDay + "/" + (month + 1) + "/" + year);
+}
+
+
+generarCalendario();
+</script>
+
+
+ 
+</body>
+
+<footer class="footer-principal animate-on-load animate-delay-11">
+    <div class="footer-contenido">
+        <p>&copy; 2025 Clínica Dental Especializada John Vega. Todos los derechos reservados.</p>
+        <div class="redes-sociales">
+            <a href="#">Facebook</a>
+            <a href="#">WhatsApp</a>
+        </div>
+    </div>
+</footer>
+
+</html>
+
+
+
+
