@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Citas - Clínica Dental Especializada John Vega</title>
+
+    <link rel="stylesheet" href="/Static/CSS/historialU.css">
+    <link rel="stylesheet" href="/Static/CSS/estilos.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="container">
+    <h1>Mis Citas</h1>
+
+    <h2>Citas Futuras</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Tratamiento</th>
+                <th>Odontólogo</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($citas_futuras as $cita): ?>
+                <tr>
+                    <td><?= $cita['fecha'] ?></td>
+                    <td><?= $cita['hora'] ?></td>
+                    <td><?= $cita['servicio'] ?></td>
+                    <td><?= $cita['odontologo'] ?></td>
+                    <td class="estado <?= $cita['estado'] ?>"><?= $cita['estado'] ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <h2>Citas Pasadas</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Tratamiento</th>
+                <th>Odontólogo</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($citas_pasadas as $cita): ?>
+                <tr>
+                    <td><?= $cita['fecha'] ?></td>
+                    <td><?= $cita['hora'] ?></td>
+                    <td><?= $cita['servicio'] ?></td>
+                    <td><?= $cita['odontologo'] ?></td>
+                    <td class="estado <?= $cita['estado'] ?>"><?= $cita['estado'] ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+
+<footer class="footer-principal animate-on-load animate-delay-11">
+    <div class="footer-contenido">
+        <p>&copy; 2025 Clínica Dental Especializada John Vega. Todos los derechos reservados.</p>
+        <div class="redes-sociales">
+            <a href="#">Facebook</a>
+            <a href="#">WhatsApp</a>
+        </div>
+    </div>
+</footer>
+
+</html>
