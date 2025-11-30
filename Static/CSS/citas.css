@@ -1,0 +1,388 @@
+/* ================================
+   SECCIÓN: AGENDAR CITA (FORMULARIO PRINCIPAL)
+   ================================ */
+
+.agendar {
+    max-width: 550px;
+    margin: 0 auto;
+    background-color: var(--blanco);
+    padding: 3rem 2rem;
+    border: 1px solid var(--gris-claro);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+.agendar h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.agendar form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.agendar label {
+    font-weight: 600;
+    color: var(--negro-texto);
+}
+
+.agendar input,
+.agendar select {
+    padding: 0.8rem;
+    border: 2px solid var(--gris-claro);
+    border-radius: 5px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color .3s ease;
+}
+
+.agendar input:focus,
+.agendar select:focus {
+    border-color: var(--verde-principal);
+}
+
+/* Mensaje de éxito */
+.mensaje-exito {
+    display: none;
+    text-align: center;
+    margin-top: 1.5rem;
+    font-weight: 600;
+    color: var(--verde-principal);
+}
+
+
+/* ================================
+   SECCIÓN: HORARIO DISPONIBLE
+   ================================ */
+
+.horarios {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--gris-fondo);
+    border: 1px solid var(--gris-claro);
+    border-radius: 10px;
+}
+
+.horarios h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.horarios-lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+}
+
+.horario-item {
+    padding: 0.7rem 1rem;
+    background: var(--blanco);
+    border: 2px solid var(--gris-claro);
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .3s ease;
+    font-weight: 500;
+}
+
+.horario-item:hover {
+    border-color: var(--verde-principal);
+    color: var(--verde-principal);
+}
+
+.horario-item.seleccionado {
+    background-color: var(--verde-principal);
+    color: white;
+    border-color: var(--verde-principal);
+}
+
+
+/* ================================
+   SECCIÓN: CONFIRMACIÓN DE CITA
+   ================================ */
+
+.confirmacion-cita {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border: 1px solid var(--verde-principal);
+    background: #eaffea;
+    border-radius: 10px;
+    display: none;
+}
+
+.confirmacion-cita h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    color: var(--verde-principal);
+}
+
+.confirmacion-cita p {
+    margin: 0.3rem 0;
+    font-size: 1rem;
+}
+
+
+/* ================================
+   SECCIÓN: REGISTROS DE TRATAMIENTOS
+   ================================ */
+
+.registros-container {
+    max-width: 750px;
+    margin: 3rem auto;
+    background-color: var(--blanco);
+    padding: 3rem 2rem;
+    border: 1px solid var(--gris-claro);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+.registros-container h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.registro-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.registro-form label {
+    font-weight: 600;
+    color: var(--negro-texto);
+}
+
+.registro-form input,
+.registro-form select,
+.registro-form textarea {
+    padding: 0.9rem;
+    border: 2px solid var(--gris-claro);
+    border-radius: 5px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color .3s ease;
+}
+
+.registro-form input:focus,
+.registro-form select:focus,
+.registro-form textarea:focus {
+    border-color: var(--verde-principal);
+}
+
+.registro-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Tabla de registros */
+.registros-tabla {
+    margin-top: 2.5rem;
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--blanco);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.registros-tabla th,
+.registros-tabla td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--gris-claro);
+}
+
+.registros-tabla th {
+    background-color: var(--azul-principal);
+    color: var(--blanco);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: .5px;
+}
+
+.registros-tabla tr:hover {
+    background-color: var(--gris-claro-suave);
+}
+
+/* Botones de acción */
+.registro-acciones {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-registro {
+    padding: 0.6rem 1rem;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s ease;
+    border: 2px solid transparent;
+}
+
+.btn-registro.editar {
+    background-color: var(--azul-principal);
+    color: var(--blanco);
+}
+
+.btn-registro.editar:hover {
+    transform: translateY(-2px);
+    background-color: var(--azul-oscuro);
+}
+
+.btn-registro.eliminar {
+    background-color: var(--rojo-suave);
+    color: var(--blanco);
+}
+
+.btn-registro.eliminar:hover {
+    background-color: var(--rojo);
+    transform: translateY(-2px);
+}
+
+/* ================================
+   SECCIÓN: REGISTRO DE TRATAMIENTOS (NUEVO)
+   ================================ */
+
+.registro-tratamientos {
+    max-width: 850px;
+    margin: 0 auto;
+    background-color: var(--blanco);
+    padding: 3rem 2rem;
+    border: 1px solid var(--gris-claro);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.registro-tratamientos h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--azul-principal);
+    font-weight: 700;
+}
+
+/* Formulario */
+.registro-formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.registro-formulario .campo label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: .4rem;
+    color: var(--negro-texto);
+}
+
+.registro-formulario input,
+.registro-formulario select,
+.registro-formulario textarea {
+    width: 100%;
+    padding: .9rem 1rem;
+    border: 2px solid var(--gris-claro);
+    border-radius: 8px;
+    background-color: var(--blanco-hueso);
+    outline: none;
+    font-size: 1rem;
+    transition: all .3s ease;
+}
+
+.registro-formulario input:focus,
+.registro-formulario select:focus,
+.registro-formulario textarea:focus {
+    border-color: var(--verde-principal);
+    background: var(--blanco);
+}
+
+/* Botón guardar */
+.btn-servicio {
+    background-color: var(--azul-principal);
+    color: var(--blanco);
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.btn-servicio:hover {
+    background-color: var(--verde-principal);
+    color: var(--blanco);
+    transform: translateY(-3px);
+}
+
+/* Tabla de registros */
+.tabla-registros table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--blanco);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.tabla-registros th {
+    background-color: var(--azul-principal);
+    color: var(--blanco);
+    padding: 1rem;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    font-size: .9rem;
+}
+
+.tabla-registros td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--gris-claro);
+}
+
+.tabla-registros tr:hover {
+    background-color: var(--gris-claro-suave);
+}
+
+/* Botones de acción */
+.acciones {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.btn-accion {
+    padding: .6rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s ease;
+    border: 2px solid transparent;
+    background-color: var(--blanco-hueso);
+}
+
+/* Botón editar */
+.btn-accion.editar {
+    border-color: var(--azul-principal);
+    color: var(--azul-principal);
+}
+
+.btn-accion.editar:hover {
+    background-color: var(--verde-principal);
+    border-color: var(--verde-principal);
+    color: var(--blanco);
+    transform: translateY(-2px);
+}
+
+/* Botón eliminar */
+.btn-accion.eliminar {
+    border-color: var(--rojo);
+    color: var(--rojo);
+}
+
+.btn-accion.eliminar:hover {
+    background-color: var(--verde-principal);
+    border-color: var(--verde-principal);
+    color: var(--blanco);
+    transform: translateY(-2px);
+}

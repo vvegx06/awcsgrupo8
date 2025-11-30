@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda del Dentista | Clínica Dental John Vega</title>
+
+
+    <link rel="stylesheet" href="/Static/CSS/estilos.css">
+    <link rel="stylesheet" href="/Static/CSS/citas.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="navbarAdmin"></div>
+    <script src="/Static/JS/include.js"></script>
+
+<section class="seccion-generica animate-on-load">
+    <div class="contenedor">
+
+        <h2 class="animate-delay-1">Agenda del Dentista</h2>
+        <p class="introduccion animate-delay-2">
+            Aquí puedes gestionar todas las citas pendientes de aprobación.
+        </p>
+
+        <div class="lista-citas animate-delay-3">
+
+            <!-- CITA INDIVIDUAL (se repetirá dinámicamente con backend) -->
+            <div class="cita-card">
+                <div class="cita-info">
+                    <h3>Juan Pérez</h3>
+                    <p><strong>Fecha:</strong> 10/12/2025</p>
+                    <p><strong>Hora:</strong> 2:30 PM</p>
+                    <p><strong>Servicio:</strong> Limpieza Dental</p>
+                    <p><strong>Estado:</strong> <span class="estado estado-pendiente">Pendiente</span></p>
+                </div>
+
+                <div class="cita-acciones">
+                    <button class="btn-accion aprobar">Aprobar</button>
+                    <button class="btn-accion modificar">Modificar</button>
+                    <button class="btn-accion cancelar">Cancelar</button>
+                </div>
+            </div>
+
+            <!-- Puedes duplicar estos divs si quieres mostrar varios ejemplos -->
+            
+        </div>
+    </div>
+</section>
+
+<footer class="footer-principal">
+    <p>© 2025 Clínica Dental John Vega</p>
+</footer>
+
+<script>
+    // Simulación de botones
+    document.querySelectorAll(".aprobar").forEach(btn =>
+        btn.addEventListener("click", () => alert("Cita aprobada."))
+    );
+    document.querySelectorAll(".modificar").forEach(btn =>
+        btn.addEventListener("click", () => alert("Ir a pantalla de modificación."))
+    );
+    document.querySelectorAll(".cancelar").forEach(btn =>
+        btn.addEventListener("click", () => confirm("¿Deseas cancelar esta cita?"))
+    );
+</script>
+
+</body>
+</html>

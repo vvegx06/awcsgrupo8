@@ -1,0 +1,172 @@
+/* ================================
+   PERFIL DEL DENTISTA
+   ================================ */
+
+.perfil {
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+/* Tarjeta principal */
+.perfil-card {
+    display: flex;
+    gap: 2.5rem;
+    background-color: var(--blanco);
+    padding: 2.5rem;
+    border-radius: 14px;
+    border: 1px solid var(--gris-claro);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+}
+
+/* Imagen del perfil */
+.perfil-img img {
+    width: 230px;
+    height: 230px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--blanco-hueso);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* Información */
+.perfil-info h2 {
+    font-size: 2rem;
+    margin-bottom: .3rem;
+}
+
+.perfil-rol {
+    color: var(--gris-texto);
+    margin-bottom: 1.4rem;
+    font-weight: 500;
+}
+
+.perfil-info h3 {
+    margin-top: 1.5rem;
+    font-size: 1.3rem;
+}
+
+/* Lista */
+.lista {
+    margin-left: 1rem;
+}
+
+.lista li {
+    margin-bottom: .4rem;
+}
+
+/* Botón editar */
+.btn-editar {
+    margin-top: 2rem;
+    background-color: var(--blanco-hueso);
+    border: 2px solid var(--negro-texto);
+    color: var(--negro-texto);
+    transition: all .3s ease;
+}
+
+.btn-editar:hover {
+    background-color: var(--verde-principal);
+    border-color: var(--verde-principal);
+    color: var(--blanco);
+    transform: translateY(-3px);
+}
+
+/*Estilos para pagina de horarios*/
+
+.horario-bloque h3 {
+    margin-top: 2rem;
+    color: var(--azul-principal);
+    font-size: 1.3rem;
+}
+
+.horario-bloque hr {
+    border: none;
+    border-top: 1px solid var(--gris-claro);
+    margin: 2rem 0;
+}
+
+.horario-bloque p {
+    color: var(--gris-medio);
+}
+
+/* Botón guardar */
+.btn-guardar-horario {
+    margin-top: 2rem;
+    background: var(--azul-principal);
+    color: var(--blanco);
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.btn-guardar-horario:hover {
+    background: var(--azul-claro);
+    color: var(--negro-texto);
+}
+
+/* ================================
+   ESTILOS ADICIONALES PARA HORARIO
+   ================================ */
+
+.horario-bloque {
+    background: var(--blanco);
+    padding: 2.5rem;
+    border-radius: 14px;
+    border: 1px solid var(--gris-claro);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.horario-bloque form .campo {
+    margin-bottom: 1.5rem;
+}
+
+/* Etiquetas */
+.horario-bloque label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: .4rem;
+    color: var(--negro-texto);
+}
+
+/* Inputs */
+.horario-bloque input[type="time"] {
+    width: 100%;
+    padding: .9rem 1rem;
+    border: 2px solid var(--gris-claro);
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: var(--blanco-hueso);
+    transition: all .3s ease;
+}
+
+.horario-bloque input[type="time"]:focus {
+    border-color: var(--azul-principal);
+    background: var(--blanco);
+    box-shadow: 0 0 6px rgba(0, 115, 230, 0.25);
+}
+
+/* Títulos de cada bloque (Entre Semana, Sábado, Domingo) */
+.horario-bloque h3 {
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--azul-principal);
+}
+
+/* Texto pequeño */
+.horario-bloque p {
+    margin-top: -.5rem;
+    margin-bottom: 1rem;
+    font-size: .9rem;
+    color: var(--gris-medio);
+}
+
+/* Espaciado general */
+.horario-bloque form {
+    margin-top: 1rem;
+}

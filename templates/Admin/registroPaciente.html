@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil Profesional | Clínica Dental John Vega</title>
+
+    <link rel="stylesheet" href="/Static/CSS/estilos.css">
+    <link rel="stylesheet" href="/Static/CSS/citas.css">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="navbarAdmin"></div>
+    <script src="/Static/JS/include.js"></script>
+
+    <section class="seccion-generica animate-on-load">
+    <div class="contenedor">
+
+        <h2 class="animate-delay-1">Registro de Tratamientos</h2>
+        <p class="introduccion animate-delay-2">
+            Añade los procedimientos realizados a cada paciente, incluyendo fecha, tipo de tratamiento y observaciones.
+        </p>
+
+        <div class="registro-tratamientos animate-delay-3">
+
+            <!-- Formulario de registro -->
+            <h3>Agregar Tratamiento</h3>
+
+            <form id="formTratamiento" class="registro-formulario">
+
+                <div class="campo">
+                    <label for="tratamiento-fecha">Fecha del Procedimiento:</label>
+                    <input type="date" id="tratamiento-fecha" required>
+                </div>
+
+                <div class="campo">
+                    <label for="tratamiento-tipo">Tipo de Procedimiento:</label>
+                    <select id="tratamiento-tipo" required>
+                        <option value="">Seleccione un procedimiento</option>
+                        <option>Extracción dental</option>
+                        <option>Limpieza profunda</option>
+                        <option>Blanqueamiento dental</option>
+                        <option>Revisión general</option>
+                        <option>Endodoncia</option>
+                        <option>Resina / Restauración</option>
+                        <option>Tratamiento de ortodoncia</option>
+                        <option>Colocación de corona</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="tratamiento-notas">Observaciones:</label>
+                    <textarea id="tratamiento-notas" rows="4" placeholder="Notas realizadas por el dentista"></textarea>
+                </div>
+
+                <button type="submit" class="btn-servicio">Guardar Registro</button>
+
+            </form>
+
+            <hr style="margin: 2rem 0; border-color: var(--gris-claro);">
+
+            <!-- Tabla de registros -->
+            <h3>Tratamientos Registrados</h3>
+
+            <div class="tabla-registros">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Procedimiento</th>
+                            <th>Observaciones</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="listaTratamientos">
+                        <!-- Registros generados dinámicamente -->
+                        <tr>
+                            <td>2025-11-20</td>
+                            <td>Limpieza profunda</td>
+                            <td>Se recomendó seguimiento en 6 meses.</td>
+                            <td class="acciones">
+                                <button class="btn-accion editar">Editar</button>
+                                <button class="btn-accion eliminar">Eliminar</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>2025-11-22</td>
+                            <td>Extracción dental</td>
+                            <td>Paciente respondió bien al procedimiento.</td>
+                            <td class="acciones">
+                                <button class="btn-accion editar">Editar</button>
+                                <button class="btn-accion eliminar">Eliminar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+</body>

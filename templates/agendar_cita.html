@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar Cita | Clínica Dental John Vega</title>
+ 
+    <link rel="stylesheet" href="/Static/CSS/estilos.css">
+    <link rel="stylesheet" href="/Static/CSS/citas.css">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+   <div id="navbar"></div>
+    <script src="/Static/JS/include.js"></script>
+
+    <!-- SECCIÓN AGENDAR CITA -->
+    <section class="agendar seccion-generica animate-on-load">
+
+        <h2 class="animate-delay-1">Agenda tu cita</h2>
+
+        <form id="formCita" class="animate-delay-2">
+
+            <label>Nombre completo:</label>
+            <input type="text" name="nombre" required>
+
+            <label>Correo electrónico:</label>
+            <input type="email" name="correo" required>
+
+            <label>Teléfono:</label>
+            <input type="tel" name="telefono" required>
+
+            <label>Servicio:</label>
+            <select name="servicio" required>
+                <option value="">Seleccione un servicio</option>
+                <option>Odontología General</option>
+                <option>Ortodoncia</option>
+                <option>Endodoncia</option>
+                <option>Periodoncia</option>
+            </select>
+
+            <label>Fecha deseada:</label>
+            <input type="date" name="fecha" required>
+
+            <button type="submit" class="btn-servicio">Enviar por WhatsApp</button>
+        </form>
+
+        <p id="mensaje-exito" class="mensaje-exito">¡Solicitud enviada con éxito por WhatsApp!</p>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-principal">
+        <p class="footer-texto">© 2025 Clínica Dental John Vega</p>
+    </footer>
+
+    <!-- SCRIPT WHATSAPP -->
+    <script>
+        document.getElementById('formCita').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const nombre = this.nombre.value;
+            const correo = this.correo.value;
+            const telefono = this.telefono.value;
+            const servicio = this.servicio.value;
+            const fecha = this.fecha.value;
+
+            const numero = "50661978209";
+
+            const mensaje = `Hola, soy ${nombre}.
+Quisiera agendar una cita en la Clínica Dental John Vega.
+Correo: ${correo}
+Teléfono: ${telefono}
+Servicio: ${servicio}
+Fecha deseada: ${fecha}`;
+
+            const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+            window.open(url, "_blank");
+
+            document.getElementById('mensaje-exito').style.display = 'block';
+            this.reset();
+        });
+    </script>
+
+</body>
+
+</html>
