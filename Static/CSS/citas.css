@@ -28,19 +28,15 @@
     color: var(--negro-texto);
 }
 
+/* Borde negro para inputs y selects */
 .agendar input,
 .agendar select {
-    padding: 0.8rem;
-    border: 2px solid var(--gris-claro);
-    border-radius: 5px;
-    font-size: 1rem;
-    outline: none;
-    transition: border-color .3s ease;
+    border: 2px solid #000 !important;
 }
 
 .agendar input:focus,
 .agendar select:focus {
-    border-color: var(--verde-principal);
+    border-color: #000 !important;
 }
 
 /* Mensaje de éxito */
@@ -301,19 +297,19 @@
 /* Botón guardar */
 .btn-servicio {
     background-color: var(--azul-principal);
-    color: var(--blanco);
+    color: #000 !important;   /* letras negras antes del hover */
     padding: 1rem 2rem;
     border-radius: 8px;
     font-size: 1rem;
     font-weight: 700;
-    border: none;
+    border: 2px solid var(--negro-texto);
     cursor: pointer;
     transition: .3s ease;
 }
 
 .btn-servicio:hover {
     background-color: var(--verde-principal);
-    color: var(--blanco);
+    color: #fff !important; /* letras blancas en hover */
     transform: translateY(-3px);
 }
 
@@ -385,4 +381,14 @@
     border-color: var(--verde-principal);
     color: var(--blanco);
     transform: translateY(-2px);
+}
+
+.agendar input,
+.agendar select {
+    padding: 1rem 0.7rem; /* más alto */
+    border: 2px solid var(--gris-claro);
+    border-radius: 5px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color .3s ease;
 }

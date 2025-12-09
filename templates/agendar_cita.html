@@ -38,8 +38,12 @@
                 <option value="">Seleccione un servicio</option>
                 <option>Odontología General</option>
                 <option>Ortodoncia</option>
+                <option>Odontopediatría</option>
                 <option>Endodoncia</option>
+                <option>Cirugía Oral y Maxilofacial</option>
                 <option>Periodoncia</option>
+                <option>Rehabilitación oral y prótesis</option>
+                <option>Estética Dental</option>
             </select>
 
             <label>Fecha deseada:</label>
@@ -52,11 +56,6 @@
 
     </section>
 
-    <!-- FOOTER -->
-    <footer class="footer-principal">
-        <p class="footer-texto">© 2025 Clínica Dental John Vega</p>
-    </footer>
-
     <!-- SCRIPT WHATSAPP -->
     <script>
         document.getElementById('formCita').addEventListener('submit', function (event) {
@@ -68,7 +67,7 @@
             const servicio = this.servicio.value;
             const fecha = this.fecha.value;
 
-            const numero = "50661978209";
+            const numero = "50683611091";
 
             const mensaje = `Hola, soy ${nombre}.
 Quisiera agendar una cita en la Clínica Dental John Vega.
@@ -86,5 +85,15 @@ Fecha deseada: ${fecha}`;
     </script>
 
 </body>
+
+<footer class="footer-principal animate-on-load animate-delay-11">
+        <div class="footer-contenido">
+            <p>&copy; 2025 Clínica Dental Especializada John Vega. Todos los derechos reservados.</p>
+            <div class="redes-sociales">
+                <a href="#">Facebook</a>
+                <a href="#">WhatsApp</a>
+            </div>
+        </div>
+    </footer>
 
 </html>

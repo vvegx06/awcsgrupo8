@@ -11,8 +11,20 @@
 
 <body>
 
-    <div id="navbar"></div>
-    <script src="/Static/JS/include.js"></script>
+    <header class="header-principal animate-on-load">
+        <a href="/templates/index.html" class="logo-container">
+            <img src="/Static/img/clinica.png" alt="Logo Clínica Dental John Vega" class="logo">
+            <span class="logo-texto">Clinica Dr. John Vega</span>
+        </a>
+
+        <nav class="navegacion">
+            <a href="/templates/serviciosinlog.html">Servicios</a>
+            <a href="/templates/nosotrossinlog.html">Nosotros</a>
+            <a href="/templates/Contacto/contactosinlog.html">Contacto</a>
+
+            <a href="/templates/Account/login.html" class="btn-iniciarSesion"> Iniciar sesión</a>
+        </nav>
+    </header>
 
     <!-- SECCIÓN PRINCIPAL DE CONTACTO -->
     <section class="seccion-generica animate-on-load">
@@ -21,11 +33,12 @@
             <h2 class="animate-delay-1">Contacto</h2>
 
             <p class="introduccion animate-delay-2">
-                Si tienes alguna queja, necesitas una cotización o tienes alguna duda, contáctanos y con gusto te ayudamos.
+                Si tienes alguna queja, necesitas una cotización o tienes alguna duda, contáctanos y con gusto te
+                ayudamos.
             </p>
 
             <div class="grid-contacto animate-delay-3">
-                
+
                 <!-- INFO DE CONTACTO -->
                 <div class="contacto-info">
                     <h3>Información Directa</h3>
@@ -66,9 +79,8 @@
             <!-- MAPA -->
             <div class="mapa-contacto animate-delay-4">
                 <h3>Ubicación</h3>
-                <iframe 
-                    src="https://www.google.com/maps?q=10.0182779,-84.2119549&hl=es;z=18&output=embed"
-                    width="100%" height="350" style="border:0;" allowfullscreen loading="lazy">
+                <iframe src="https://www.google.com/maps?q=10.0182779,-84.2119549&hl=es;z=18&output=embed" width="100%"
+                    height="350" style="border:0;" allowfullscreen loading="lazy">
                 </iframe>
             </div>
 
@@ -84,6 +96,7 @@
             </div>
         </div>
     </footer>
-    
+
 </body>
+
 </html>

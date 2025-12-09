@@ -115,7 +115,6 @@ h2 {
 
     background-color: var(--blanco);
     color: var(--negro-texto) !important;
-    border: 2px solid var(--negro-texto);
     transition: all 0.3s ease-out;
 }
 
@@ -141,8 +140,9 @@ h2 {
     font-size: 0.9rem;
 
     background-color: var(--blanco);
+    border: 2px solid var(--negro-texto);
     color: var(--negro-texto) !important;
-    border: 2px solid var(--blanco-hueso);
+
     transition: all 0.3s ease-out;
 }
 

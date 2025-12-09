@@ -23,7 +23,7 @@
 .contacto-form textarea {
     width: 100%;
     padding: 0.8rem;
-    border: 2px solid var(--gris-claro);
+    border: 2px solid var(--negro-texto);
     background: var(--blanco);
     border-radius: 2px;
     font-size: 1rem;
