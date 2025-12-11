@@ -88,12 +88,40 @@ selectedDay = day;
 selectedDateEl.textContent = `Fecha seleccionada: ${day} / ${month + 1} / ${year}`;
 }
 
-function confirmarCita() {
-if (!selectedDay) {
-alert("Por favor seleccione una fecha");
-return;
-}
-alert("Cita confirmada para el " + selectedDay + "/" + (month + 1) + "/" + year);
+async function confirmarCita() {
+    if (!selectedDay) {
+        alert("Por favor seleccione una fecha");
+        return;
+    }
+
+    const fecha = `${year}-${String(month + 1).padStart(2, "0")}-${String(selectedDay).padStart(2, "0")}`;
+
+    // hora por defecto (puedes hacer selector)
+    const hora = "10:00:00";
+
+    const datos = {
+        id_paciente: 1,         // DE MOMENTO FIJADO, luego lo conectamos con login
+        id_odontologo: 1,       // o null
+        fecha: fecha,
+        hora: hora,
+        servicio: "Consulta General"
+    };
+
+    const response = await fetch("http://localhost:3000/agendar-cita", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(datos)
+    });
+
+    const res = await response.json();
+
+    if (response.ok) {
+        alert("✔ Cita guardada correctamente");
+        console.log(res);
+    } else {
+        alert("Error al guardar la cita");
+        console.error(res);
+    }
 }
 
 generarCalendario();

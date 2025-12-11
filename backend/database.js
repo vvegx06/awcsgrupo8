@@ -5,10 +5,10 @@ const sql = require('mssql'); // <--- ¡Esta línea faltaba o fue eliminada!
 // **NOTA:** Reemplaza los placeholders con tus credenciales reales.
 const config = {
     // ... (Tu configuración) ...
-    user: 'DB_CONEXION', 
-    password: 'Bienvenido19', 
-    server: 'localhost', // Dejamos 'localhost' para evitar errores de ENOTFOUND
-    database: 'awcs_ClinicaDental',
+    user: 'sa', 
+    password: 'admin', 
+    server: 'localhost\\SQLEXPRESS', // Dejamos 'localhost' para evitar errores de ENOTFOUND
+    database: 'WebAdmin',
     options: {
         trustServerCertificate: true, 
         encrypt: false,
@@ -35,7 +35,8 @@ async function connectDB() {
 
 // Exportar el pool de conexión y la función de conexión
 module.exports = {
-    sql, 
+    sql,
+    config,
     pool,
     connectDB
 };
