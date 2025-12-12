@@ -1,14 +1,13 @@
 // backend/database.js
-const sql = require('mssql'); // <--- ¡Esta línea faltaba o fue eliminada!
+const sql = require('mssql'); 
 
 // Configuración de la conexión a SQL Server
 // **NOTA:** Reemplaza los placeholders con tus credenciales reales.
 const config = {
-    // ... (Tu configuración) ...
-    user: 'sa', 
-    password: 'admin', 
-    server: 'localhost\\SQLEXPRESS', // Dejamos 'localhost' para evitar errores de ENOTFOUND
-    database: 'WebAdmin',
+    user: 'DB_CONEXION', 
+    password: 'Bienvenido19', 
+    server: 'localhost', 
+    database: 'awcs_ClinicaDental',
     options: {
         trustServerCertificate: true, 
         encrypt: false,
@@ -17,7 +16,7 @@ const config = {
 };
 
 // Objeto para manejar la conexión y las consultas
-const pool = new sql.ConnectionPool(config); // Ahora 'sql' está definido
+const pool = new sql.ConnectionPool(config); 
 
 /**
  * Función para establecer la conexión al iniciar el servidor.
@@ -33,10 +32,9 @@ async function connectDB() {
     }
 }
 
-// Exportar el pool de conexión y la función de conexión
+// Exportar el pool de conexión, el objeto sql y la función de conexión
 module.exports = {
-    sql,
-    config,
+    sql, 
     pool,
     connectDB
 };
