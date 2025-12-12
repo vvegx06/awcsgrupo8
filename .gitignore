@@ -1,2 +1,22 @@
 # Archivos y carpetas de dependencias y temporales
 /node_modules
+
+# Archivos de entorno
+.env
+.env.*
+!.env.example
+
+# Archivos de configuración local
+config/local-*.json
+
+# Archivos de registro
+logs
+*.log
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Directorio de archivos subidos
+/Static/uploads/*
+!/Static/uploads/.gitkeep
