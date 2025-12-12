@@ -96,12 +96,11 @@ async function confirmarCita() {
 
     const fecha = `${year}-${String(month + 1).padStart(2, "0")}-${String(selectedDay).padStart(2, "0")}`;
 
-    // hora por defecto (puedes hacer selector)
     const hora = "10:00:00";
 
     const datos = {
-        id_paciente: 1,         // DE MOMENTO FIJADO, luego lo conectamos con login
-        id_odontologo: 1,       // o null
+        id_paciente: 1,         
+        id_odontologo: 1,       
         fecha: fecha,
         hora: hora,
         servicio: "Consulta General"

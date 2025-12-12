@@ -4,10 +4,10 @@ const sql = require('mssql');
 // Configuración de la conexión a SQL Server
 // **NOTA:** Reemplaza los placeholders con tus credenciales reales.
 const config = {
-    user: 'DB_CONEXION', 
-    password: 'Bienvenido19', 
-    server: 'localhost', 
-    database: 'awcs_ClinicaDental',
+    user: 'sa', 
+    password: 'admin', 
+    server: 'localhost\\SQLEXPRESS', // Dejamos 'localhost' para evitar errores de ENOTFOUND
+    database: 'WebAdmin',
     options: {
         trustServerCertificate: true, 
         encrypt: false,

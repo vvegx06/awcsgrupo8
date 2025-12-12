@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/Static/JS/citas.js"></script>
     <title>Mis Citas - Clínica Dental Especializada John Vega</title>
 
     <link rel="stylesheet" href="/Static/CSS/historialU.css">
@@ -21,57 +22,37 @@
 <div class="container">
     <h1>Mis Citas</h1>
 
-    <h2>Citas Futuras</h2>
+<h2>Citas Futuras</h2>
+<table id="tablaFuturas">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Tratamiento</th>
+            <th>Odontólogo</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Fecha</th>
-                <th>Hora</th>
-                <th>Tratamiento</th>
-                <th>Odontólogo</th>
-                <th>Estado</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach($citas_futuras as $cita): ?>
-                <tr>
-                    <td><?= $cita['fecha'] ?></td>
-                    <td><?= $cita['hora'] ?></td>
-                    <td><?= $cita['servicio'] ?></td>
-                    <td><?= $cita['odontologo'] ?></td>
-                    <td class="estado <?= $cita['estado'] ?>"><?= $cita['estado'] ?></td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+<h2>Citas Pasadas</h2>
+<table id="tablaPasadas">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Tratamiento</th>
+            <th>Odontólogo</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
 
-    <h2>Citas Pasadas</h2>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Fecha</th>
-                <th>Hora</th>
-                <th>Tratamiento</th>
-                <th>Odontólogo</th>
-                <th>Estado</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach($citas_pasadas as $cita): ?>
-                <tr>
-                    <td><?= $cita['fecha'] ?></td>
-                    <td><?= $cita['hora'] ?></td>
-                    <td><?= $cita['servicio'] ?></td>
-                    <td><?= $cita['odontologo'] ?></td>
-                    <td class="estado <?= $cita['estado'] ?>"><?= $cita['estado'] ?></td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
 
 </div>
+
 
 </body>
 
