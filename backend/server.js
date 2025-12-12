@@ -3,19 +3,27 @@
 const express = require('express'); 
 const path = require('path'); 
 const { connectDB } = require('./database'); 
-const authRoutes = require('./routes/authRoutes'); // <--- 🌟 CORRECCIÓN 1: Descomentar e importar rutas
+const authRoutes = require('./routes/authRoutes');
+const dentistProfileRoutes = require('./routes/dentistProfileRoutes');
+const { errorHandler } = require('./middleware/error');
 
 const app = express(); 
 const port = 3000; 
 
 // --- MIDDLEWARES GLOBALES ---
-app.use(express.json()); 
-app.use(express.urlencoded({ extended: true })); // Middleware para manejar datos de formularios (aunque en este caso usamos JSON)
-app.use('/Static', express.static(path.join(__dirname, '..', 'static'))); 
+app.use(express.json({ limit: '10mb' })); 
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
+// Servir archivos estáticos
+app.use('/Static', express.static(path.join(__dirname, '..', 'Static')));
 app.use('/templates', express.static(path.join(__dirname, '..', 'templates')));
 
 // --- RUTAS DE LA API ---
-app.use('/api/auth', authRoutes); // <--- 🌟 CORRECCIÓN 1: Usar las rutas de autenticación
+app.use('/api/auth', authRoutes);
+app.use('/api/dentist', dentistProfileRoutes);
+
+// Middleware para manejo de errores
+app.use(errorHandler);
 
 // --- SERVIR VISTAS DEL FRONTEND ---
 app.get('/', (req, res) => {
