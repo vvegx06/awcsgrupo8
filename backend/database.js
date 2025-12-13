@@ -32,9 +32,10 @@ async function connectDB() {
     }
 }
 
-// Exportar el pool de conexión, el objeto sql y la función de conexión
+// Exportar el pool de conexión, el objeto sql, la configuración y la función de conexión
 module.exports = {
     sql, 
     pool,
+    config,
     connectDB
 };

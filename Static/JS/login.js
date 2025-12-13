@@ -25,17 +25,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     // 1. Guardar el token y el rol
                     localStorage.setItem('authToken', data.token);
                     localStorage.setItem('userRol', data.rol);
+                    localStorage.setItem('userName', data.usuario);
                     
+                    // QA: Validación del nombre de usuario
+                    console.log('QA: Usuario logueado:', data.usuario);
+                    console.log('QA: Rol del usuario:', data.rol);
                     alert('Bienvenido, ' + data.usuario + '! (Rol: ' + data.rol + ')');
                     
                     // 2. Redirigir según el rol del usuario
                     const userRole = data.rol;
                     
                     if (userRole === 'Administrador') {
-                        // 🌟 CORRECCIÓN: Redirección específica para el Administrador
                         window.location.href = '/templates/homeAdmin.html'; 
+                    } else if (userRole === 'Odontólogo') {
+                        window.location.href = '/templates/homeOdontologo.html'; 
                     } else {
-                        // Redirección por defecto para otros roles (Paciente, etc.)
                         window.location.href = '/templates/home.html'; 
                     }
                     

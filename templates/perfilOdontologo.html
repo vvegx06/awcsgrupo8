@@ -1,36 +1,30 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil Profesional | Clínica Dental John Vega</title>
-
     <link rel="stylesheet" href="/Static/CSS/estilos.css">
     <link rel="stylesheet" href="/Static/CSS/perfil.css">
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
-
-   <div id="navbarAdmin"></div>
+    <!-- Navbar dinámico según el rol -->
+    <div id="navbar-container"></div>
+    
     <script src="/Static/JS/include.js"></script>
     <script src="/Static/JS/navbar_auth.js"></script>
 
     <!-- PERFIL DEL DENTISTA -->
     <section class="perfil seccion-generica animate-on-load">
-
         <div class="perfil-card animate-delay-1">
-
             <div class="perfil-img">
                 <img src="/Static/img/dentista.jpg" alt="Foto del Dentista">
             </div>
-
             <div class="perfil-info">
-
                 <h2 id="nombreUsuario">Dr. John Vega</h2>
                 <p class="perfil-rol">Odontólogo General & Especialista</p>
-
+                
                 <h3>Especialidades</h3>
                 <ul class="lista">
                     <li>Ortodoncia</li>
@@ -38,18 +32,16 @@
                     <li>Endodoncia</li>
                     <li>Rehabilitación oral</li>
                 </ul>
-
+                
                 <h3>Experiencia</h3>
                 <p>
                     Más de 12 años de experiencia brindando atención odontológica integral, 
                     enfocado en tratamientos modernos, estética y bienestar del paciente.
                 </p>
-
+                
                 <button class="btn-servicio btn-editar" onclick="window.location.href='/templates/Account/edit_dentist_profile.html'">Actualizar Información</button>
             </div>
-
         </div>
-
     </section>
 
     <!-- FOOTER -->
@@ -57,7 +49,31 @@
         <p class="footer-texto">© 2025 Clínica Dental John Vega</p>
     </footer>
 
+    <script>
+        // Cargar navbar según el rol del usuario
+        document.addEventListener('DOMContentLoaded', () => {
+            const userRol = localStorage.getItem('userRol');
+            const navbarContainer = document.getElementById('navbar-container');
+            
+            if (userRol === 'Odontólogo') {
+                // Cargar navbar específico para odontólogos
+                fetch('/templates/Componentes/navbarOdontologo.html')
+                    .then(response => response.text())
+                    .then(html => {
+                        navbarContainer.innerHTML = html;
+                    })
+                    .catch(error => console.error('Error cargando navbar odontólogo:', error));
+            } else {
+                // Cargar navbar de administrador por defecto
+                fetch('/templates/Componentes/navbarAdmin.html')
+                    .then(response => response.text())
+                    .then(html => {
+                        navbarContainer.innerHTML = html;
+                    })
+                    .catch(error => console.error('Error cargando navbar admin:', error));
+            }
+        });
+    </script>
     <script src="/Static/JS/perfil.js"></script>
 </body>
-
 </html>

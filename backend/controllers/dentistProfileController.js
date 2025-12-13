@@ -1,7 +1,6 @@
-const sql = require('mssql');
+const { pool, sql } = require('../database');
 const path = require('path');
 const fs = require('fs');
-const config = require('../database');
 
 // Directorio para almacenar las imágenes de perfil
 const UPLOAD_DIR = path.join(__dirname, '../../Static/uploads/dentist-profiles');
@@ -16,11 +15,11 @@ const getDentistProfile = async (req, res) => {
     try {
         const userId = req.user.id; // Asumiendo que el middleware de autenticación agrega el usuario a req.user
         
-        const pool = await sql.connect(config);
         const result = await pool.request()
             .input('userId', sql.Int, userId)
             .query(`
-                SELECT o.*, pa.usuario, pa.nombre as nombre_usuario
+                SELECT o.id, o.nombre, o.especialidad, o.correo, o.telefono, o.experiencia, o.creado_en,
+                       pa.usuario, pa.nombre as nombre_usuario
                 FROM odontologos o
                 INNER JOIN personal_app pa ON o.id = pa.id_referencia
                 WHERE pa.id = @userId AND pa.id_rol = 2

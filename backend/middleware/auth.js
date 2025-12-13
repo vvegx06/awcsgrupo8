@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
-const sql = require('mssql');
-const config = require('../database');
+const { pool, sql } = require('../database');
 
 // Middleware para proteger rutas
 const protect = async (req, res, next) => {
@@ -14,12 +13,14 @@ const protect = async (req, res, next) => {
         try {
             // Obtener el token del encabezado
             token = req.headers.authorization.split(' ')[1];
+            console.log('DEBUG: Token recibido:', token ? 'sí' : 'no');
+            console.log('DEBUG: Token length:', token ? token.length : 0);
 
             // Verificar el token
-            const decoded = jwt.verify(token, process.env.JWT_SECRET || 'tu_secreto_seguro');
+            const decoded = jwt.verify(token, 'TU_CLAVE_SECRETA_SUPER_SEGURA');
+            console.log('DEBUG: Token decodificado exitosamente');
 
             // Obtener el usuario del token
-            const pool = await sql.connect(config);
             const result = await pool.request()
                 .input('id', sql.Int, decoded.id)
                 .query('SELECT * FROM personal_app WHERE id = @id');
@@ -44,13 +45,15 @@ const protect = async (req, res, next) => {
 
 // Middleware para autorizar roles específicos
 const authorize = (...roles) => {
-    return (req, res, next) => {
-        // Obtener el rol del usuario desde la base de datos
-        const pool = sql.connect(config).then(pool => {
-            return pool.request()
+    return async (req, res, next) => {
+        try {
+            // Obtener el rol del usuario desde la base de datos
+            const result = await pool.request()
                 .input('id', sql.Int, req.user.id)
                 .query('SELECT r.nombre_rol FROM roles r INNER JOIN personal_app pa ON r.id = pa.id_rol WHERE pa.id = @id');
-        }).then(result => {
+            
+            console.log('DEBUG: Resultado de consulta de rol:', result.recordset);
+            
             if (result.recordset.length === 0) {
                 return res.status(403).json({ 
                     success: false, 
@@ -59,6 +62,9 @@ const authorize = (...roles) => {
             }
 
             const userRole = result.recordset[0].nombre_rol;
+            console.log('DEBUG: Rol encontrado:', userRole);
+            console.log('DEBUG: Roles permitidos:', roles);
+            console.log('DEBUG: ¿El rol está permitido?', roles.includes(userRole));
             
             if (!roles.includes(userRole)) {
                 return res.status(403).json({ 
@@ -68,13 +74,13 @@ const authorize = (...roles) => {
             }
             
             next();
-        }).catch(error => {
+        } catch (error) {
             console.error('Error al verificar roles:', error);
             res.status(500).json({ 
                 success: false, 
                 message: 'Error al verificar permisos de usuario' 
             });
-        });
+        }
     };
 };
 
