@@ -62,7 +62,7 @@ function updateProfileUI(profileData) {
     // Actualizar nombre
     const nombreUsuarioElement = document.getElementById('nombreUsuario');
     if (nombreUsuarioElement && profileData.nombre) {
-        nombreUsuarioElement.textContent = `Dr. ${profileData.nombre}`;
+        nombreUsuarioElement.textContent = profileData.nombre;
     }
     
     // Actualizar especialidades
@@ -76,16 +76,41 @@ function updateProfileUI(profileData) {
         });
     }
     
+    // Actualizar email
+    const emailElement = document.getElementById('perfil-email');
+    if (emailElement && profileData.correo) {
+        emailElement.textContent = profileData.correo;
+    }
+    
+    // Actualizar teléfono
+    const telefonoElement = document.getElementById('perfil-telefono');
+    if (telefonoElement && profileData.telefono) {
+        telefonoElement.textContent = profileData.telefono;
+    }
+    
     // Actualizar experiencia
-    const experienciaElement = document.querySelector('.perfil-info p');
+    const experienciaElement = document.getElementById('perfil-experiencia');
     if (experienciaElement && profileData.experiencia) {
         experienciaElement.textContent = `Más de ${profileData.experiencia} años de experiencia brindando atención odontológica integral, enfocado en tratamientos modernos, estética y bienestar del paciente.`;
     }
     
-    // Actualizar foto de perfil si existe
+    // Actualizar foto de perfil
     const perfilImg = document.querySelector('.perfil-img img');
-    if (perfilImg && profileData.foto_url) {
-        perfilImg.src = profileData.foto_url;
-        perfilImg.alt = `Foto del Dr. ${profileData.nombre}`;
+    if (perfilImg) {
+        // Generar nombre de imagen basado en el nombre del usuario
+        const imageName = profileData.nombre
+            .replace(/\s+/g, '') // Eliminar espacios
+            .replace(/\./g, '')  // Eliminar puntos
+            .replace(/Dr/gi, '') // Eliminar "Dr"
+            + '.jpeg';
+        
+        // Construir ruta de la imagen
+        const imagePath = `/Static/img/${imageName}`;
+        
+        // Actualizar src y alt
+        perfilImg.src = imagePath;
+        perfilImg.alt = `Foto del ${profileData.nombre}`;
+        
+        console.log('QA: Imagen de perfil generada:', imagePath);
     }
 }

@@ -46,6 +46,8 @@ const protect = async (req, res, next) => {
 // Middleware para autorizar roles específicos
 const authorize = (...roles) => {
     return async (req, res, next) => {
+        // Aplanar el array de roles si viene anidado
+        const flatRoles = roles.flat();
         try {
             // Obtener el rol del usuario desde la base de datos
             const result = await pool.request()
@@ -61,12 +63,12 @@ const authorize = (...roles) => {
                 });
             }
 
-            const userRole = result.recordset[0].nombre_rol;
+            const userRole = result.recordset[0].nombre_rol.trim();
             console.log('DEBUG: Rol encontrado:', userRole);
-            console.log('DEBUG: Roles permitidos:', roles);
-            console.log('DEBUG: ¿El rol está permitido?', roles.includes(userRole));
+            console.log('DEBUG: Roles permitidos:', flatRoles);
+            console.log('DEBUG: ¿El rol está permitido?', flatRoles.includes(userRole));
             
-            if (!roles.includes(userRole)) {
+            if (!flatRoles.includes(userRole)) {
                 return res.status(403).json({ 
                     success: false, 
                     message: `El rol ${userRole} no tiene acceso a esta ruta` 
