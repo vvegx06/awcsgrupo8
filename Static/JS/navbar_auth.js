@@ -38,7 +38,13 @@ function modifyNavbar() {
     // NOTA: El enlace 'Agendar Cita' se mantiene porque NO estamos ejecutando:
     // btnCita.style.display = 'none';
 
-    // 1. Crear y añadir el enlace "Cerrar Sesión"
+    // 1. Verificar si ya existe un botón de Cerrar Sesión para evitar duplicación
+    const existingLogout = navegacion.querySelector('a[href="#"]');
+    if (existingLogout && existingLogout.textContent === "Cerrar Sesión") {
+        return; // Ya existe, no agregar otro
+    }
+
+    // 2. Crear y añadir el enlace "Cerrar Sesión"
     const logoutLink = document.createElement('a');
     logoutLink.href = "#"; 
     logoutLink.textContent = "Cerrar Sesión";
@@ -52,7 +58,7 @@ function modifyNavbar() {
          logout();
     });
 
-    // 2. Insertamos el nuevo enlace al final del <nav>.
+    // 3. Insertamos el nuevo enlace al final del <nav>.
     navegacion.appendChild(logoutLink);
 }
 
