@@ -61,9 +61,7 @@ const updateDentistProfile = async (req, res) => {
             return res.status(400).json({ message: 'Todos los campos son obligatorios' });
         }
 
-        const pool = await sql.connect(config);
-        
-        // Iniciar transacción
+        // Iniciar transacción usando el pool existente
         const transaction = new sql.Transaction(pool);
         await transaction.begin(sql.ISOLATION_LEVEL.READ_COMMITTED);
 
@@ -137,9 +135,36 @@ const updateDentistProfile = async (req, res) => {
             // Confirmar la transacción
             await transaction.commit();
             
-            // Devolver los datos actualizados
-            const updatedProfile = await getDentistProfile(req, res);
-            res.json(updatedProfile);
+            // Obtener los datos actualizados para devolverlos
+            const result = await pool.request()
+                .input('userId', sql.Int, userId)
+                .query(`
+                    SELECT o.id, o.nombre, o.especialidad, o.correo, o.telefono, o.experiencia, o.creado_en,
+                           pa.usuario, pa.nombre as nombre_usuario
+                    FROM odontologos o
+                    INNER JOIN personal_app pa ON o.id = pa.id_referencia
+                    WHERE pa.id = @userId AND pa.id_rol = 2
+                `);
+
+            if (result.recordset.length === 0) {
+                return res.status(404).json({ message: 'Perfil no encontrado después de actualizar' });
+            }
+
+            const profile = result.recordset[0];
+            
+            // Formatear la respuesta
+            const response = {
+                id: profile.id,
+                nombre: profile.nombre_usuario || profile.nombre,
+                especialidades: profile.especialidad ? profile.especialidad.split(',').map(s => s.trim()) : [],
+                experiencia: profile.experiencia || 0,
+                telefono: profile.telefono || '',
+                correo: profile.correo || '',
+                foto_url: profile.foto_url ? `/Static/uploads/dentist-profiles/${profile.foto_url}` : null,
+                usuario: profile.usuario
+            };
+
+            res.json(response);
             
         } catch (error) {
             // Revertir la transacción en caso de error

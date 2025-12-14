@@ -11,8 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Cargar datos actuales del perfil
     cargarDatosPerfil();
 
-    // Manejador para la vista previa de la imagen
-    fileInput.addEventListener('change', function(e) {
+    // Manejador para la vista previa de la imagen (solo si existe el input de foto)
+    if (fileInput) {
+        fileInput.addEventListener('change', function(e) {
         const file = e.target.files[0];
         if (file) {
             fileNameSpan.textContent = file.name;
@@ -28,14 +29,22 @@ document.addEventListener('DOMContentLoaded', function() {
             imagePreview.style.display = 'none';
         }
     });
+    }
 
-    // Manejador para el botón de guardar
-    btnGuardar.addEventListener('click', async function() {
+    // Manejador para el botón de guardar (solo si existe)
+    if (btnGuardar) {
+        btnGuardar.addEventListener('click', async function() {
         const formData = new FormData(form);
         
         try {
-            const response = await fetch('/api/dentist/profile', {
+            // Obtener token de autenticación
+            const token = localStorage.getItem('authToken');
+            
+            const response = await fetch('/api/dentist', {
                 method: 'PUT',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
                 body: formData,
                 // No establecer 'Content-Type': 'multipart/form-data' manualmente,
                 // fetch lo hará automáticamente con el boundary correcto
@@ -45,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (response.ok) {
                 alert('Perfil actualizado correctamente');
-                window.location.href = '/perfil';
+                window.location.href = '/templates/perfilOdontologo.html';
             } else {
                 throw new Error(data.message || 'Error al actualizar el perfil');
             }
@@ -54,18 +63,29 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Error al actualizar el perfil: ' + error.message);
         }
     });
+    }
 
-    // Manejador para el botón de cancelar
-    btnCancelar.addEventListener('click', function() {
+    // Manejador para el botón de cancelar (solo si existe)
+    if (btnCancelar) {
+        btnCancelar.addEventListener('click', function() {
         if (confirm('¿Está seguro de que desea cancelar? Los cambios no guardados se perderán.')) {
-            window.location.href = '/perfil';
+            window.location.href = '/templates/perfilOdontologo.html';
         }
     });
+    }
 
     // Función para cargar los datos actuales del perfil
     async function cargarDatosPerfil() {
         try {
-            const response = await fetch('/api/dentist/profile');
+            // Obtener token de autenticación
+            const token = localStorage.getItem('authToken');
+            
+            const response = await fetch('/api/dentist', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            
             if (!response.ok) {
                 throw new Error('Error al cargar el perfil');
             }
