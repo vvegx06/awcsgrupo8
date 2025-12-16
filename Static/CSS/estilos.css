@@ -436,3 +436,80 @@ h2 {
 .redes-sociales a:hover {
     color: var(--verde-principal);
 }
+
+/* Contenedor para separar el botón del texto */
+.contenedor-boton-doctores {
+    margin-top: 40px;          /* separación del texto */
+}
+
+/* Botón transparente */
+.btn-doctores {
+    display: inline-block;
+    padding: 12px 30px;
+    border: 2px solid #2f8f6b; /* mismo verde del proyecto */
+    color: #2f8f6b;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 30px;
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+/* Hover elegante */
+.btn-doctores:hover {
+    background-color: #2f8f6b;
+    color: #ffffff;
+}
+
+/* ===============================
+   SECCIÓN DOCTORES
+================================ */
+
+.doctores-contenedor {
+    max-width: 1100px;
+    margin: 80px auto;
+    padding: 0 20px;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.titulo-doctores {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 60px;
+    font-weight: 700;
+}
+
+.doctores-grid {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+}
+
+.doctor-card {
+    border: 2px solid #000;
+    padding: 30px;
+    max-width: 500px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.doctor-card img {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.doctor-card h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.doctor-card p {
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 15px;
+    color: #333;
+}

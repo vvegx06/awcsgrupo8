@@ -1,71 +1,86 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="/Static/JS/citas.js"></script>
-    <title>Mis Citas - Clínica Dental Especializada John Vega</title>
 
-    <link rel="stylesheet" href="/Static/CSS/historialU.css">
+    <title>Historial de Citas | Clínica Dental Especializada John Vega</title>
+
     <link rel="stylesheet" href="/Static/CSS/estilos.css">
+    <link rel="stylesheet" href="/Static/CSS/historialU.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
+    <script src="/Static/JS/citas.js" defer></script>
 </head>
+
 <body>
 
-    <!-- Navbar dinámico según el rol -->
-    <div id="navbar-container"></div>
-    
+    <!-- Navbar dinámico -->
+    <div id="navbarAdmin"></div>
     <script src="/Static/JS/include.js"></script>
     <script src="/Static/JS/navbar_auth.js"></script>
 
-<div class="container">
-    <h1>Mis Citas</h1>
+    <!-- CONTENIDO PRINCIPAL -->
+    <section class="seccion-generica animate-on-load">
+        <div class="contenedor">
 
-<h2>Citas Futuras</h2>
-<table id="tablaFuturas">
-    <thead>
-        <tr>
-            <th>Fecha</th>
-            <th>Hora</th>
-            <th>Tratamiento</th>
-            <th>Odontólogo</th>
-            <th>Estado</th>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
+            <h2 class="animate-delay-1">Historial</h2>
 
-<h2>Citas Pasadas</h2>
-<table id="tablaPasadas">
-    <thead>
-        <tr>
-            <th>Fecha</th>
-            <th>Hora</th>
-            <th>Tratamiento</th>
-            <th>Odontólogo</th>
-            <th>Estado</th>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
+            <!-- CITAS FUTURAS -->
+            <h2 class="subtitulo">Citas Futuras</h2>
 
+            <div class="tabla-wrapper">
+                <table id="tablaFuturas">
+                    <thead>
+                        <tr>
+                            <th>Paciente</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Tratamiento</th>
+                            <th>Odontólogo</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
 
-</div>
+            <!-- CITAS PASADAS -->
+            <h2 class="subtitulo">Citas Pasadas</h2>
 
+            <div class="tabla-wrapper">
+                <table id="tablaPasadas">
+                    <thead>
+                        <tr>
+                            <th>Paciente</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Tratamiento</th>
+                            <th>Odontólogo</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-principal animate-on-load animate-delay-11">
+        <div class="footer-contenido">
+            <p>&copy; 2025 Clínica Dental Especializada John Vega. Todos los derechos reservados.</p>
+            <div class="redes-sociales">
+                <a href="https://www.facebook.com/profile.php?id=100069438113222" target="_blank">Facebook</a>
+                <a href="https://wa.me/50683611091" target="_blank">WhatsApp</a>
+            </div>
+        </div>
+    </footer>
 
 </body>
-
-<footer class="footer-principal animate-on-load animate-delay-11">
-    <div class="footer-contenido">
-        <p>&copy; 2025 Clínica Dental Especializada John Vega. Todos los derechos reservados.</p>
-        <div class="redes-sociales">
-            <a href="#">Facebook</a>
-            <a href="#">WhatsApp</a>
-        </div>
-    </div>
-</footer>
-
 </html>

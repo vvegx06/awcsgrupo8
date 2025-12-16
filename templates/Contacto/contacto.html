@@ -22,11 +22,12 @@
             <h2 class="animate-delay-1">Contacto</h2>
 
             <p class="introduccion animate-delay-2">
-                Si tienes alguna queja, necesitas una cotización o tienes alguna duda, contáctanos y con gusto te ayudamos.
+                Si tienes alguna queja, necesitas una cotización o tienes alguna duda, contáctanos y con gusto te
+                ayudamos.
             </p>
 
             <div class="grid-contacto animate-delay-3">
-                
+
                 <!-- INFO DE CONTACTO -->
                 <div class="contacto-info">
                     <h3>Información Directa</h3>
@@ -44,7 +45,7 @@
                 <div class="contacto-form">
                     <h3>Envíanos un Mensaje</h3>
 
-                    <form action="#" method="POST">
+                    <form id="formContacto">
 
                         <label>Nombre completo</label>
                         <input type="text" name="nombre" required>
@@ -64,12 +65,40 @@
 
             </div>
 
+            <script>
+                document.getElementById("formContacto").addEventListener("submit", function (event) {
+                    event.preventDefault();
+
+                    const nombre = this.nombre.value;
+                    const email = this.email.value;
+                    const telefono = this.telefono.value || "No proporcionado";
+                    const mensajeUsuario = this.mensaje.value;
+
+                    const numeroWhatsApp = "50683611091";
+
+                    const mensaje = `Hola, tengo una consulta desde la página web de la Clínica Dental John Vega.
+
+                    Nombre: ${nombre}
+                    Correo: ${email}
+                    Teléfono: ${telefono}
+
+                    Mensaje:
+                    ${mensajeUsuario}`;
+
+                    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+                    window.open(url, "_blank");
+
+                    alert("Mensaje enviado correctamente. Pronto nos pondremos en contacto contigo.");
+
+                    this.reset();
+                });
+            </script>
+
             <!-- MAPA -->
             <div class="mapa-contacto animate-delay-4">
                 <h3>Ubicación</h3>
-                <iframe 
-                    src="https://www.google.com/maps?q=10.0182779,-84.2119549&hl=es;z=18&output=embed"
-                    width="100%" height="350" style="border:0;" allowfullscreen loading="lazy">
+                <iframe src="https://www.google.com/maps?q=10.0182779,-84.2119549&hl=es;z=18&output=embed" width="100%"
+                    height="350" style="border:0;" allowfullscreen loading="lazy">
                 </iframe>
             </div>
 
@@ -85,6 +114,7 @@
             </div>
         </div>
     </footer>
-    
+
 </body>
+
 </html>

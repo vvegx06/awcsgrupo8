@@ -1,47 +1,82 @@
 body {
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-            margin: 0;
-            padding: 0;
-        }
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    font-family: 'Work Sans', sans-serif;
+}
 
-        .container {
-            width: 90%;
-            max-width: 900px;
-            margin: 40px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
+.main-contenido,
+.seccion-generica {
+    flex: 1;
+}
 
-        h2 {
-            margin-top: 30px;
-            color: #333;
-        }
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 6px;
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
+.titulo-principal {
+    text-align: right !important;
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin: 20px auto 30px auto;
+    display: block;
+    width: 100%;
+}
 
-        table th, table td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: left;
-        }
+.subtitulo {
+    text-align: center;
+    margin-top: 35px;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: #333;
+}
 
-        table th {
-            background: #009b4d;
-            color: white;
-        }
+.tabla-contenedor {
+    overflow-x: auto;
+}
 
-        .estado {
-            font-weight: bold;
-        }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: transparent; 
+}
 
-        .estado.Programada { color: orange; }
-        .estado.Confirmada { color: green; }
-        .estado.Completada { color: blue; }
-        .estado.Cancelada { color: red; }
+table th,
+table td {
+    border: 1px solid #000; /* bordes negros */
+    padding: 12px;
+    text-align: center;
+    background-color: transparent;
+    color: #000;
+}
+
+table th {
+    font-weight: 600;
+}
+
+/* ===== ESTADOS ===== */
+.estado {
+    font-weight: 600;
+}
+
+.estado.Programada {
+    color: #d18b00;
+}
+
+.estado.Confirmada {
+    color: #007a3d;
+}
+
+.estado.Completada {
+    color: #004aad;
+}
+
+.estado.Cancelada {
+    color: #b00020;
+}

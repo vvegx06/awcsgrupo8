@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Cita | Clínica Dental John Vega</title>
+
+    <link rel="stylesheet" href="/Static/CSS/estilos.css">
+    <link rel="stylesheet" href="/Static/CSS/citas.css">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="navbarAdmin"></div>
+    <script src="/Static/JS/include.js"></script>
+    <script src="/Static/JS/navbar_auth.js"></script>
+
+    <section class="seccion-generica animate-on-load">
+        <div class="contenedor">
+
+            <h2 class="animate-delay-1">Modificar Cita</h2>
+            <p class="introduccion animate-delay-2">
+                Ajusta los detalles de la cita del paciente según sea necesario.
+            </p>
+
+            <div class="registro-tratamientos animate-delay-3">
+
+                <form id="formModificarCita" class="registro-formulario">
+
+                    <div class="campo">
+                        <label for="cita-nombre">Nombre del Paciente:</label>
+                        <input type="text" id="cita-nombre" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="cita-fecha">Fecha:</label>
+                        <input type="date" id="cita-fecha" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="cita-hora">Hora:</label>
+                        <input type="time" id="cita-hora" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="cita-servicio">Servicio:</label>
+                        <select id="cita-servicio" required>
+                            <option value="">Seleccione un servicio</option>
+                            <option>Limpieza Dental</option>
+                            <option>Extracción Dental</option>
+                            <option>Blanqueamiento Dental</option>
+                            <option>Endodoncia</option>
+                            <option>Ortodoncia</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="cita-estado">Estado:</label>
+                        <select id="cita-estado" required>
+                            <option value="Pendiente">Pendiente</option>
+                            <option value="Aprobada">Aprobada</option>
+                            <option value="Cancelada">Cancelada</option>
+                        </select>
+                    </div>
+
+                    <div class="botones-accion" style="display:flex; gap:1rem;">
+                        <button type="submit" class="btn-servicio" style="flex:1;">Guardar Cambios</button>
+                        <a href="agendaCitas.html" class="btn-servicio" style="flex:1; text-align:center; display:inline-block;">Cancelar</a>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        // Cargar datos de la cita al abrir la página
+        window.addEventListener('DOMContentLoaded', () => {
+            const cita = JSON.parse(localStorage.getItem('citaModificar'));
+            if (cita) {
+                document.getElementById('cita-nombre').value = cita.nombre;
+                // Convertimos la fecha al formato yyyy-mm-dd
+                const fecha = cita.fecha.split('/').reverse().join('-'); 
+                document.getElementById('cita-fecha').value = fecha;
+                document.getElementById('cita-hora').value = cita.hora;
+                document.getElementById('cita-servicio').value = cita.servicio;
+                document.getElementById('cita-estado').value = cita.estado;
+            }
+
+            // Manejar el envío del formulario
+            const form = document.getElementById('formModificarCita');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                // Guardar los cambios en localStorage
+                const citaActualizada = {
+                    nombre: document.getElementById('cita-nombre').value,
+                    fecha: document.getElementById('cita-fecha').value.split('-').reverse().join('/'), // dd/mm/yyyy
+                    hora: document.getElementById('cita-hora').value,
+                    servicio: document.getElementById('cita-servicio').value,
+                    estado: document.getElementById('cita-estado').value
+                };
+
+                localStorage.setItem('citaModificar', JSON.stringify(citaActualizada));
+
+                // Redirigir de vuelta a la agenda
+                window.location.href = 'agendaCitas.html';
+            });
+        });
+    </script>
+
+</body>
+</html>

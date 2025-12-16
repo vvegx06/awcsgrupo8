@@ -5,9 +5,9 @@ const sql = require('mssql');
 // **NOTA:** Reemplaza los placeholders con tus credenciales reales.
 const config = {
     user: 'sa', 
-    password: 'admin', 
-    server: 'localhost\\SQLEXPRESS', // Dejamos 'localhost' para evitar errores de ENOTFOUND
-    database: 'WebAdmin',
+    password: 'Andres2006', 
+    server: 'localhost', // Dejamos 'localhost' para evitar errores de ENOTFOUND
+    database: 'Clinica',
     options: {
         trustServerCertificate: true, 
         encrypt: false,

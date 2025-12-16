@@ -56,7 +56,7 @@
                 <div class="contacto-form">
                     <h3>Envíanos un Mensaje</h3>
 
-                    <form action="#" method="POST">
+                    <form id="formContacto">
 
                         <label>Nombre completo</label>
                         <input type="text" name="nombre" required>
@@ -75,6 +75,35 @@
                 </div>
 
             </div>
+
+            <script>
+                document.getElementById("formContacto").addEventListener("submit", function (event) {
+                    event.preventDefault();
+
+                    const nombre = this.nombre.value;
+                    const email = this.email.value;
+                    const telefono = this.telefono.value || "No proporcionado";
+                    const mensajeUsuario = this.mensaje.value;
+
+                    const numeroWhatsApp = "50683611091";
+
+                    const mensaje = `Hola, tengo una consulta desde la página web de la Clínica Dental John Vega.
+
+                    Nombre: ${nombre}
+                    Correo: ${email}
+                    Teléfono: ${telefono}
+
+                    Mensaje:
+                    ${mensajeUsuario}`;
+
+                    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+                    window.open(url, "_blank");
+
+                    alert("Mensaje enviado correctamente. Pronto nos pondremos en contacto contigo.");
+
+                    this.reset();
+                });
+            </script>
 
             <!-- MAPA -->
             <div class="mapa-contacto animate-delay-4">

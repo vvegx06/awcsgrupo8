@@ -3,15 +3,14 @@
    ================================ */
 
 .agendar {
-    max-width: 550px;
-    margin: 0 auto;
-    background-color: var(--blanco);
-    padding: 3rem 2rem;
-    border: 1px solid var(--gris-claro);
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+    max-width: 600px; /* ancho máximo */
+    width: 90%;       /* se adapta en móviles */
+    padding: 60px 20px;
+    margin: 60px auto;
+    background-color: #fff; /* opcional, si querés tarjeta blanca */
+    border-radius: 10px;    /* bordes redondeados */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* sombra suave */
 }
-
 .agendar h2 {
     font-size: 2rem;
     margin-bottom: 2rem;
@@ -28,11 +27,22 @@
     color: var(--negro-texto);
 }
 
-/* Borde negro para inputs y selects */
+/* Campos de entrada y selección necesitan el 100% de ancho */
 .agendar input,
 .agendar select {
+    /* ¡Añadido 'width: 100%' para que los campos llenen el nuevo ancho de 600px! */
+    width: 100%; 
+    padding: 1rem 0.7rem; /* más alto */
     border: 2px solid #000 !important;
+    border-radius: 5px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color .3s ease;
+    box-sizing: border-box; /* Asegura que el padding no desborde el 100% */
 }
+
+/* El resto del CSS permanece sin cambios */
+/* ... */
 
 .agendar input:focus,
 .agendar select:focus {
@@ -392,3 +402,17 @@
     outline: none;
     transition: border-color .3s ease;
 }
+
+/* Hace que la página ocupe toda la pantalla */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+
+
+

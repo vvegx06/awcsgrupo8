@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Tratamiento | Clínica Dental John Vega</title>
+
+    <link rel="stylesheet" href="/Static/CSS/estilos.css">
+    <link rel="stylesheet" href="/Static/CSS/citas.css">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="navbarAdmin"></div>
+    <script src="/Static/JS/include.js"></script>
+    <script src="/Static/JS/navbar_auth.js"></script>
+
+    <section class="seccion-generica animate-on-load">
+        <div class="contenedor">
+
+            <h2 class="animate-delay-1">Editar Registro de Tratamiento</h2>
+            <p class="introduccion animate-delay-2">
+                Modifica la información del procedimiento realizado a un paciente.
+            </p>
+
+            <div class="registro-tratamientos animate-delay-3">
+
+                <!-- Formulario de edición -->
+                <h3>Editar Tratamiento</h3>
+
+                <form id="formEditarTratamiento" class="registro-formulario">
+
+                    <div class="campo">
+                        <label for="editar-paciente">Nombre del Paciente:</label>
+                        <input type="text" id="editar-paciente" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="editar-fecha">Fecha del Procedimiento:</label>
+                        <input type="date" id="editar-fecha" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="editar-tipo">Tipo de Procedimiento:</label>
+                        <select id="editar-tipo" required>
+                            <option value="">Seleccione un procedimiento</option>
+                            <option>Extracción dental</option>
+                            <option>Limpieza profunda</option>
+                            <option>Blanqueamiento dental</option>
+                            <option>Revisión general</option>
+                            <option>Endodoncia</option>
+                            <option>Resina / Restauración</option>
+                            <option>Tratamiento de ortodoncia</option>
+                            <option>Colocación de corona</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="editar-notas">Observaciones:</label>
+                        <textarea id="editar-notas" rows="4" placeholder="Notas realizadas por el dentista"></textarea>
+                    </div>
+
+                    <div class="botones-accion" style="display: flex; gap: 1rem;">
+                        <button type="submit" class="btn-servicio" style="flex: 1;">Guardar Cambios</button>
+                        <a href="registroPaciente.html" class="btn-servicio"
+                            style="flex: 1; text-align: center; display: inline-block;">Cancelar</a>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            // Cargar los datos existentes
+            const tratamiento = JSON.parse(localStorage.getItem('tratamientoEditar'));
+            if (tratamiento) {
+                document.getElementById('editar-paciente').value = tratamiento.nombre;
+                document.getElementById('editar-fecha').value = tratamiento.fecha;
+                document.getElementById('editar-tipo').value = tratamiento.procedimiento;
+                document.getElementById('editar-notas').value = tratamiento.observaciones;
+            }
+
+            // Manejar envío del formulario
+            const form = document.getElementById('formEditarTratamiento');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault(); // Evita que recargue la página
+
+                // Actualizamos el tratamiento con los nuevos valores
+                const tratamientoActualizado = {
+                    nombre: document.getElementById('editar-paciente').value,
+                    fecha: document.getElementById('editar-fecha').value,
+                    procedimiento: document.getElementById('editar-tipo').value,
+                    observaciones: document.getElementById('editar-notas').value
+                };
+
+                // Guardamos en localStorage
+                localStorage.setItem('tratamientoEditar', JSON.stringify(tratamientoActualizado));
+
+                // Redirigimos a la página de registro
+                window.location.href = 'registroPaciente.html';
+            });
+        });
+    </script>
+
+</body>
+
+</html>

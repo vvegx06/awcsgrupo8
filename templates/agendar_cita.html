@@ -70,16 +70,24 @@
 
             const numero = "50683611091";
 
-            const mensaje = `Hola, soy ${nombre}.
-Quisiera agendar una cita en la Clínica Dental John Vega.
+            const mensaje = `Buenas, mi nombre es ${nombre}.
+Quisiera agendar una cita.
+
 Correo: ${correo}
 Teléfono: ${telefono}
 Servicio: ${servicio}
+
+¿Tienen disponibilidad para esta fecha?
 Fecha deseada: ${fecha}`;
 
             const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
             window.open(url, "_blank");
 
+            alert(
+                "Mensaje enviado correctamente.\n\n" +
+                "Próximamente se te estará contactando para informar sobre la aprobación o cambio de fecha de la cita solicitada."
+            );
+            
             document.getElementById('mensaje-exito').style.display = 'block';
             this.reset();
         });
@@ -91,8 +99,13 @@ Fecha deseada: ${fecha}`;
         <div class="footer-contenido">
             <p>&copy; 2025 Clínica Dental Especializada John Vega. Todos los derechos reservados.</p>
             <div class="redes-sociales">
-                <a href="#">Facebook</a>
-                <a href="#">WhatsApp</a>
+                <a href="https://www.facebook.com/profile.php?id=100069438113222" target="_blank"
+                    rel="noopener noreferrer">
+                    Facebook
+                </a>
+                <a href="https://wa.me/50683611091" target="_blank" rel="noopener noreferrer">
+                    WhatsApp
+                </a>
             </div>
         </div>
     </footer>

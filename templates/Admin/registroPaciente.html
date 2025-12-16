@@ -18,93 +18,143 @@
     <script src="/Static/JS/navbar_auth.js"></script>
 
     <section class="seccion-generica animate-on-load">
-    <div class="contenedor">
+        <div class="contenedor">
 
-        <h2 class="animate-delay-1">Registro de Tratamientos</h2>
-        <p class="introduccion animate-delay-2">
-            Añade los procedimientos realizados a cada paciente, incluyendo fecha, tipo de tratamiento y observaciones.
-        </p>
+            <h2 class="animate-delay-1">Registro de Tratamientos de Pacientes</h2>
+            <p class="introduccion animate-delay-2">
+                Añade los procedimientos realizados a cada paciente, incluyendo fecha, tipo de tratamiento y
+                observaciones.
+            </p>
 
-        <div class="registro-tratamientos animate-delay-3">
+            <div class="registro-tratamientos animate-delay-3">
 
-            <!-- Formulario de registro -->
-            <h3>Agregar Tratamiento</h3>
+                <!-- Formulario de registro -->
+                <h3>Agregar Tratamiento</h3>
 
-            <form id="formTratamiento" class="registro-formulario">
+                <form id="formTratamiento" class="registro-formulario">
 
-                <div class="campo">
-                    <label for="tratamiento-fecha">Fecha del Procedimiento:</label>
-                    <input type="date" id="tratamiento-fecha" required>
+                    <div class="campo">
+                        <label for="tratamiento-paciente">Nombre del Paciente:</label>
+                        <input type="text" id="tratamiento-paciente" placeholder="" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="tratamiento-fecha">Fecha del Procedimiento:</label>
+                        <input type="date" id="tratamiento-fecha" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="tratamiento-tipo">Tipo de Procedimiento:</label>
+                        <select id="tratamiento-tipo" required>
+                            <option value="">Seleccione un procedimiento</option>
+                            <option>Extracción dental</option>
+                            <option>Limpieza profunda</option>
+                            <option>Blanqueamiento dental</option>
+                            <option>Revisión general</option>
+                            <option>Endodoncia</option>
+                            <option>Resina / Restauración</option>
+                            <option>Tratamiento de ortodoncia</option>
+                            <option>Colocación de corona</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="tratamiento-notas">Observaciones:</label>
+                        <textarea id="tratamiento-notas" rows="4"
+                            placeholder="Notas realizadas por el dentista"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-servicio">Guardar Registro</button>
+
+                </form>
+
+                <hr style="margin: 2rem 0; border-color: var(--gris-claro);">
+
+                <!-- Tabla de registros -->
+                <h3>Tratamientos Registrados</h3>
+
+                <div class="tabla-registros">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Nombre</th>
+                                <th>Procedimiento</th>
+                                <th>Observaciones</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="listaTratamientos">
+                            <!-- Registros generados dinámicamente -->
+                            <tr>
+                                <td>2025-11-20</td>
+                                <td>Andres Vega</td>
+                                <td>Limpieza profunda</td>
+                                <td>Se recomendó seguimiento en 6 meses.</td>
+                                <td class="acciones">
+                                    <button class="btn-accion editar">Editar</button>
+                                    <button class="btn-accion eliminar">Eliminar</button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>2025-11-22</td>
+                                <td>Josue Valverde</td>
+                                <td>Extracción dental</td>
+                                <td>Paciente respondió bien al procedimiento.</td>
+                                <td class="acciones">
+                                    <button class="btn-accion editar">Editar</button>
+                                    <button class="btn-accion eliminar">Eliminar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
-                <div class="campo">
-                    <label for="tratamiento-tipo">Tipo de Procedimiento:</label>
-                    <select id="tratamiento-tipo" required>
-                        <option value="">Seleccione un procedimiento</option>
-                        <option>Extracción dental</option>
-                        <option>Limpieza profunda</option>
-                        <option>Blanqueamiento dental</option>
-                        <option>Revisión general</option>
-                        <option>Endodoncia</option>
-                        <option>Resina / Restauración</option>
-                        <option>Tratamiento de ortodoncia</option>
-                        <option>Colocación de corona</option>
-                    </select>
-                </div>
-
-                <div class="campo">
-                    <label for="tratamiento-notas">Observaciones:</label>
-                    <textarea id="tratamiento-notas" rows="4" placeholder="Notas realizadas por el dentista"></textarea>
-                </div>
-
-                <button type="submit" class="btn-servicio">Guardar Registro</button>
-
-            </form>
-
-            <hr style="margin: 2rem 0; border-color: var(--gris-claro);">
-
-            <!-- Tabla de registros -->
-            <h3>Tratamientos Registrados</h3>
-
-            <div class="tabla-registros">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Procedimiento</th>
-                            <th>Observaciones</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-
-                    <tbody id="listaTratamientos">
-                        <!-- Registros generados dinámicamente -->
-                        <tr>
-                            <td>2025-11-20</td>
-                            <td>Limpieza profunda</td>
-                            <td>Se recomendó seguimiento en 6 meses.</td>
-                            <td class="acciones">
-                                <button class="btn-accion editar">Editar</button>
-                                <button class="btn-accion eliminar">Eliminar</button>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>2025-11-22</td>
-                            <td>Extracción dental</td>
-                            <td>Paciente respondió bien al procedimiento.</td>
-                            <td class="acciones">
-                                <button class="btn-accion editar">Editar</button>
-                                <button class="btn-accion eliminar">Eliminar</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
 
         </div>
+    </section>
+    <script>
+        // Seleccionamos la tabla
+        const listaTratamientos = document.getElementById('listaTratamientos');
 
-    </div>
-</section>
+        // Función para actualizar botones
+        function actualizarBotones() {
+            const botonesEditar = document.querySelectorAll('.editar');
+            const botonesEliminar = document.querySelectorAll('.eliminar');
+
+            botonesEditar.forEach((btn) => {
+                btn.onclick = (e) => {
+                    const fila = e.target.closest('tr');
+                    const tratamiento = {
+                        fecha: fila.children[0].textContent,
+                        nombre: fila.children[1].textContent,
+                        procedimiento: fila.children[2].textContent,
+                        observaciones: fila.children[3].textContent
+                    };
+
+                    // Guardamos los datos en localStorage
+                    localStorage.setItem('tratamientoEditar', JSON.stringify(tratamiento));
+
+                    // Redirigimos a la página de edición
+                    window.location.href = 'editarregistro.html';
+                };
+            });
+
+            botonesEliminar.forEach((btn) => {
+                btn.onclick = (e) => {
+                    if (confirm('¿Seguro que desea eliminar este registro?')) {
+                        const fila = e.target.closest('tr');
+                        fila.remove();
+                    }
+                };
+            });
+        }
+
+        // Ejecutamos al cargar
+        actualizarBotones();
+    </script>
 
 </body>
