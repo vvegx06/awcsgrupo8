@@ -44,67 +44,69 @@
                         <button class="btn-accion aprobar">Aprobar</button>
                         <button class="btn-accion modificar">Modificar</button>
                         <button class="btn-accion cancelar">Cancelar</button>
-                    </div>
-                </div>
+                        </div>
+                        </div>
+                        
+                        </div>
+                        </div>
+                        </section>
+                        
+                        <footer class="footer-principal animate-on-load animate-delay-11">
+                            <div class="footer-contenido">
+                                <p>&copy; 2025 Clínica Dental Especializada John Vega. Todos los derechos reservados.</p>
+                                <div class="redes-sociales">
+                                    <a href="#">Facebook</a>
+                                    <a href="#">WhatsApp</a>
+                                </div>
+                            </div>
+                        </footer>
+                        
+                        <script>
+                            console.log("SCRIPT AGENDA CARGADO");
 
-            </div>
-        </div>
-    </section>
+                            async function cargarAgenda() {
+                                console.log("Intentando cargar agenda...");
 
-    <footer class="footer-principal animate-on-load animate-delay-11">
-        <div class="footer-contenido">
-            <p>&copy; 2025 Clínica Dental Especializada John Vega. Todos los derechos reservados.</p>
-            <div class="redes-sociales">
-                <a href="#">Facebook</a>
-                <a href="#">WhatsApp</a>
-            </div>
-        </div>
-    </footer>
+                                const contenedor = document.getElementById("listaCitas");
 
-    <!-- SCRIPT FUNCIONAL -->
-    <script>
-    document.querySelectorAll(".cita-card").forEach(cita => {
+                                if (!contenedor) {
+                                    console.error("NO EXISTE #listaCitas");
+                                    return;
+                                }
 
-        const estado = cita.querySelector(".estado");
-        const btnAprobar = cita.querySelector(".btn-accion.aprobar");
-        const btnModificar = cita.querySelector(".btn-accion.modificar");
-        const btnCancelar = cita.querySelector(".btn-accion.cancelar");
+                                const res = await fetch("http://localhost:3000/agenda");
+                                const citas = await res.json();
 
-        // Botón Aprobar
-        btnAprobar.addEventListener("click", () => {
-            estado.textContent = "Aprobada";
-            estado.className = "estado estado-aprobada";
-            alert("La cita ha sido aprobada correctamente.");
-        });
+                                console.log("Citas recibidas:", citas);
 
-        // Botón Cancelar
-        btnCancelar.addEventListener("click", () => {
-            const confirmar = confirm("¿Deseas cancelar esta cita?");
-            if (confirmar) {
-                estado.textContent = "Cancelada";
-                estado.className = "estado estado-cancelada";
-                alert("La cita ha sido cancelada.");
-            }
-        });
+                                contenedor.innerHTML = "";
 
-        // Botón Modificar
-        btnModificar.addEventListener("click", () => {
-            // Guardamos los datos de la cita en localStorage para usar en la página de modificación
-            const citaData = {
-                nombre: cita.querySelector("h3").textContent,
-                fecha: cita.querySelector("p:nth-of-type(1)").textContent.replace("Fecha: ", ""),
-                hora: cita.querySelector("p:nth-of-type(2)").textContent.replace("Hora: ", ""),
-                servicio: cita.querySelector("p:nth-of-type(3)").textContent.replace("Servicio: ", ""),
-                estado: estado.textContent
-            };
-            localStorage.setItem("citaModificar", JSON.stringify(citaData));
+                                if (citas.length === 0) {
+                                    contenedor.innerHTML = "<p>No hay citas pendientes</p>";
+                                    return;
+                                }
 
-            // Redirigimos a la página de modificación
-            window.location.href = "modificar-cita.html";
-        });
+                                citas.forEach(cita => {
+                                    const card = document.createElement("div");
+                                    card.className = "cita-card";
 
-    });
-</script>
+                                    card.innerHTML = `
+                                    <div class="cita-info">
+                                        <h3>${cita.paciente}</h3>
+                                        <p><strong>Fecha:</strong> ${new Date(cita.fecha).toLocaleDateString()}</p>
+                                        <p><strong>Hora:</strong> ${new Date(cita.hora).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+                                        <p><strong>Servicio:</strong> ${cita.servicio}</p>
+                                        <p><strong>Estado:</strong> ${cita.estado}</p>
+                                    </div>
+                                `;
+
+                                    contenedor.appendChild(card);
+                                });
+                            }
+
+                            cargarAgenda();
+                        </script>
+
 
 </body>
 </html>

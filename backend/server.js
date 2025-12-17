@@ -125,6 +125,107 @@ app.get("/citas/:id_paciente", async (req, res) => {
     }
 });
 
+// --- RUTA agendar CITAS ---
+
+app.post("/citas-publicas", async (req, res) => {
+    try {
+        const { nombre, correo, telefono, servicio, fecha } = req.body;
+
+        // 1️⃣ Buscar o crear paciente
+        let pacienteResult = await pool.request()
+            .input("correo", sql.VarChar, correo)
+            .query("SELECT id FROM pacientes WHERE correo = @correo");
+
+        let id_paciente;
+
+        if (pacienteResult.recordset.length === 0) {
+            const nuevoPaciente = await pool.request()
+                .input("nombre", sql.VarChar, nombre)
+                .input("correo", sql.VarChar, correo)
+                .input("telefono", sql.VarChar, telefono)
+                .query(`
+                    INSERT INTO pacientes (nombre, correo, telefono)
+                    OUTPUT INSERTED.id
+                    VALUES (@nombre, @correo, @telefono)
+                `);
+
+            id_paciente = nuevoPaciente.recordset[0].id;
+        } else {
+            id_paciente = pacienteResult.recordset[0].id;
+        }
+
+        // 2️⃣ Hora FIJA como objeto Date (CLAVE)
+        const hora = new Date("1970-01-01T09:00:00");
+
+        // 3️⃣ Insertar cita
+        await pool.request()
+            .input("id_paciente", sql.Int, id_paciente)
+            .input("fecha", sql.Date, fecha)
+            .input("hora", sql.Time, hora) // 👈 AQUÍ está la solución
+            .input("servicio", sql.VarChar, servicio)
+            .query(`
+                INSERT INTO citas (id_paciente, fecha, hora, servicio)
+                VALUES (@id_paciente, @fecha, @hora, @servicio)
+            `);
+
+        res.json({ mensaje: "Cita registrada correctamente" });
+
+    } catch (error) {
+        console.error("Error al registrar cita:", error);
+        res.status(500).json({ error: "Error del servidor" });
+    }
+});
+
+// --- RUTA Obtener CITAS ---
+
+app.get("/agenda", async (req, res) => {
+    try {
+        const result = await pool.request().query(`
+            SELECT 
+                c.id,
+                p.nombre AS paciente,
+                c.fecha,
+                c.hora,
+                c.servicio,
+                c.estado
+            FROM citas c
+            INNER JOIN pacientes p ON c.id_paciente = p.id
+            WHERE c.estado = 'Programada'
+            ORDER BY c.fecha, c.hora
+        `);
+
+        res.json(result.recordset);
+
+    } catch (error) {
+        console.error("Error al obtener agenda:", error);
+        res.status(500).json({ error: "Error del servidor" });
+    }
+});
+
+// --- RUTA cambiar estado CITAS ---
+
+app.put("/citas/:id/estado", async (req, res) => {
+    try {
+        const { estado } = req.body;
+        const id = req.params.id;
+
+        await pool.request()
+            .input("estado", sql.VarChar, estado)
+            .input("id", sql.Int, id)
+            .query(`
+                UPDATE citas
+                SET estado = @estado
+                WHERE id = @id
+            `);
+
+        res.json({ mensaje: "Estado actualizado" });
+
+    } catch (error) {
+        console.error("Error al actualizar estado:", error);
+        res.status(500).json({ error: "Error del servidor" });
+    }
+});
+
 
 
 

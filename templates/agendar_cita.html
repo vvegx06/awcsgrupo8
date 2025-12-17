@@ -59,37 +59,50 @@
 
     <!-- SCRIPT WHATSAPP -->
     <script>
-        document.getElementById('formCita').addEventListener('submit', function (event) {
+        document.getElementById('formCita').addEventListener('submit', async function (event) {
             event.preventDefault();
 
-            const nombre = this.nombre.value;
-            const correo = this.correo.value;
-            const telefono = this.telefono.value;
-            const servicio = this.servicio.value;
-            const fecha = this.fecha.value;
+            const data = {
+                nombre: this.nombre.value,
+                correo: this.correo.value,
+                telefono: this.telefono.value,
+                servicio: this.servicio.value,
+                fecha: this.fecha.value
+            };
 
-            const numero = "50683611091";
+            try {
+                // 1️⃣ Guardar en la base de datos
+                await fetch("http://localhost:3000/citas-publicas", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data)
+                });
 
-            const mensaje = `Buenas, mi nombre es ${nombre}.
-Quisiera agendar una cita.
+                // 2️⃣ Abrir WhatsApp
+                const numero = "50683611091";
+                const mensaje = `Buenas, mi nombre es ${data.nombre}.
+    Quisiera agendar una cita.
+    
+    Correo: ${data.correo}
+    Teléfono: ${data.telefono}
+    Servicio: ${data.servicio}
+    Fecha deseada: ${data.fecha}`;
 
-Correo: ${correo}
-Teléfono: ${telefono}
-Servicio: ${servicio}
+                const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+                window.open(url, "_blank");
 
-¿Tienen disponibilidad para esta fecha?
-Fecha deseada: ${fecha}`;
+                alert(
+                    "Solicitud enviada correctamente.\n\n" +
+                    "Tu cita ha sido registrada y pronto será confirmada."
+                );
 
-            const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
-            window.open(url, "_blank");
+                document.getElementById('mensaje-exito').style.display = 'block';
+                this.reset();
 
-            alert(
-                "Mensaje enviado correctamente.\n\n" +
-                "Próximamente se te estará contactando para informar sobre la aprobación o cambio de fecha de la cita solicitada."
-            );
-            
-            document.getElementById('mensaje-exito').style.display = 'block';
-            this.reset();
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Ocurrió un error al registrar la cita");
+            }
         });
     </script>
 
